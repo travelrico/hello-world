@@ -31,9 +31,22 @@ header {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--light);
+    text-decoration: none;
+
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.036em;
+}
+
+.logo img {
+    width: 22px;
+    height: auto;
+    display: block;
 }
 
 nav {
