@@ -362,6 +362,18 @@ main {
     display: block;
 }
 
+.project-gallery-three {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.project-gallery-three img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 /* FOOTER */
 
 footer {
@@ -448,5 +460,7 @@ footer {
 
         border-bottom: 1px solid #444;
     }
+
+    
 
 }
