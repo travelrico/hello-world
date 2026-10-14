@@ -1,0 +1,13 @@
+{
+  "name": "eric-van-hees-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portfolio bilingue d’Eric Van Hees, généré avec Eleventy.",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+title: "Eric Van Hees — Direction artistique indépendante"
+---
+<main id="main-content">
+  <section class="hero section-wrap" aria-labelledby="hero-title">
+    <div class="hero-copy reveal">
+      <p class="eyebrow"><span class="status-dot"></span><span data-locale="fr">Direction artistique indépendante · France</span><span data-locale="en" hidden>Independent art direction · France</span></p>
+      <h1 id="hero-title"><span data-locale="fr">Des idées<br>qui prennent<br><em>forme.</em></span><span data-locale="en" hidden>Ideas<br>made<br><em>tangible.</em></span></h1>
+      <div class="hero-bottom"><p><span data-locale="fr">Je crée des identités, des campagnes et des expériences numériques à la croisée du sens et de l’image.</span><span data-locale="en" hidden>I create identities, campaigns and digital experiences where meaning meets image.</span></p><a class="round-link" href="#projects" aria-label="Découvrir les projets / Explore projects"><span>↓</span></a></div>
+    </div>
+    <div class="hero-visual reveal" aria-label="Film d’ouverture du portfolio">
+      <video class="hero-video" autoplay muted loop playsinline poster="{{ '/assets/images/hero-poster.jpg' | url }}" aria-label="Animation abstraite rouge sur fond sombre"><source src="{{ '/assets/video/hero.mp4' | url }}" type="video/mp4"></video>
+      <div class="visual-caption"><span>EVH—26</span><span>Selected work · 2023—26</span></div>
+    </div>
+  </section>
+
+  <section class="projects-section section-wrap" id="projects" aria-labelledby="projects-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">01 / <span data-locale="fr">Sélection</span><span data-locale="en" hidden>Selected work</span></p><h2 id="projects-title"><span data-locale="fr">Projets</span><span data-locale="en" hidden>Projects</span><sup>06</sup></h2></div><p class="section-note"><span data-locale="fr">Un aperçu de travaux récents et d’études de cas.</span><span data-locale="en" hidden>A selection of recent work and case studies.</span></p></div>
+    <div class="project-grid">
+      {% for project in projects %}
+      <a class="project-card reveal {{ 'card-featured' if loop.first else '' }}" href="{{ ('/projects/' + project.slug + '/') | url }}" aria-label="{{ project.name }} — {{ project.category.fr }}">
+        <div class="card-image {{ project.theme }}"><img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}" loading="lazy"><span class="card-number">{{ project.number }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
+        <div class="card-meta"><div><h3>{{ project.name }}</h3><p><span data-locale="fr">{{ project.category.fr }}</span><span data-locale="en" hidden>{{ project.category.en }}</span></p></div><span class="card-year">{{ project.year }}</span></div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="about-section section-wrap" id="about" aria-labelledby="about-title">
+    <div class="section-heading reveal"><div><p class="eyebrow">02 / <span data-locale="fr">À propos</span><span data-locale="en" hidden>About</span></p><h2 id="about-title"><span data-locale="fr">Penser juste.<br><em>Faire durable.</em></span><span data-locale="en" hidden>Think clearly.<br><em>Make it last.</em></span></h2></div><p class="about-index">EVH / 01—26</p></div>
+    <div class="about-content reveal"><p class="about-lede"><span data-locale="fr">J’accompagne les marques et les équipes qui ont quelque chose à défendre, à faire grandir ou à réinventer.</span><span data-locale="en" hidden>I work with brands and teams who have something to stand for, grow or reinvent.</span></p><div class="about-columns"><p><span data-locale="fr">De la première intuition au dernier détail, je cherche le point de rencontre entre une idée forte et une forme évidente. Mon approche mêle stratégie, direction artistique et design graphique pour construire des univers cohérents, vivants et reconnaissables.</span><span data-locale="en" hidden>From the first intuition to the final detail, I look for the meeting point between a strong idea and an unmistakable form. My practice brings together strategy, art direction and graphic design to build coherent, expressive and recognizable worlds.</span></p><p><span data-locale="fr">Je travaille avec curiosité, en dialogue avec les équipes et les savoir-faire. Chaque projet est une occasion de clarifier le message, de trouver le bon ton et de créer des outils qui continuent à faire leur travail dans le temps.</span><span data-locale="en" hidden>I work with curiosity, in dialogue with teams and their expertise. Every project is a chance to clarify the message, find the right voice and create tools that keep working over time.</span></p></div><div class="services"><span><span data-locale="fr">Ce que je fais</span><span data-locale="en" hidden>What I do</span></span><p><span data-locale="fr">Stratégie de marque · Identité visuelle · Campagnes · Éditorial · Digital</span><span data-locale="en" hidden>Brand strategy · Visual identity · Campaigns · Editorial · Digital</span></p></div></div>
+  </section>
+
+  <section class="contact-section section-wrap" id="contact" aria-labelledby="contact-title">
+    <div class="contact-inner reveal"><p class="eyebrow">03 / <span data-locale="fr">Contact</span><span data-locale="en" hidden>Contact</span></p><h2 id="contact-title"><span data-locale="fr">Une idée<br>en tête&nbsp;?</span><span data-locale="en" hidden>Something<br>in mind?</span></h2><a class="contact-link" href="mailto:{{ site.email }}">{{ site.email }} <span aria-hidden="true">↗</span></a><p class="contact-location"><span data-locale="fr">Disponible pour des projets en France et ailleurs.</span><span data-locale="en" hidden>Available for projects in France and beyond.</span></p></div>
+    <div class="contact-mark" aria-hidden="true">EVH<span>↗</span></div>
+  </section>
+</main>
