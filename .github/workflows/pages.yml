@@ -1,8 +1,9 @@
 name: Build and publish portfolio
 
 on:
-  push:
-    branches: [refonte-portfolio-2026]
+  # Publication automatique en pause : lancement manuel uniquement
+  # (bouton « Run workflow » dans l'onglet Actions de GitHub).
+  # À réactiver avec « push: branches: [main] » une fois le contenu nettoyé.
   workflow_dispatch:
 
 permissions:
