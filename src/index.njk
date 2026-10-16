@@ -16,7 +16,7 @@ title: "Eric Van Hees — Direction artistique indépendante"
   </section>
 
   <section class="projects-section section-wrap" id="projects" aria-labelledby="projects-title">
-    <div class="section-heading reveal"><div><p class="eyebrow">01 / <span data-locale="fr">Sélection</span><span data-locale="en" hidden>Selected work</span></p><h2 id="projects-title"><span data-locale="fr">Projets</span><span data-locale="en" hidden>Projects</span><sup>06</sup></h2></div><p class="section-note"><span data-locale="fr">Un aperçu de travaux récents et d’études de cas.</span><span data-locale="en" hidden>A selection of recent work and case studies.</span></p></div>
+    <div class="section-heading reveal"><div><p class="eyebrow">01 / <span data-locale="fr">Sélection</span><span data-locale="en" hidden>Selected work</span></p><h2 id="projects-title"><span data-locale="fr">Projets</span><span data-locale="en" hidden>Projects</span><sup>{{ "0" if projects.length < 10 }}{{ projects.length }}</sup></h2></div><p class="section-note"><span data-locale="fr">Un aperçu de travaux récents et d’études de cas.</span><span data-locale="en" hidden>A selection of recent work and case studies.</span></p></div>
     <div class="project-grid">
       {% for project in projects %}
       <a class="project-card reveal {{ 'card-featured' if loop.first else '' }}" href="{{ ('/projects/' + project.slug + '/') | url }}" aria-label="{{ project.name }} — {{ project.category.fr }}">
