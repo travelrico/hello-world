@@ -21,7 +21,7 @@ Je suis graphiste, pas développeur : **explique tes choix simplement**, sans ja
 ## Contenu et contraintes
 - Certains projets clients ne peuvent pas être montrés publiquement (statut salarié) : ne jamais inventer ni ajouter de projets, noms de clients ou logos sans validation.
 - Ne pas inventer de textes biographiques : la page « À propos » sera rédigée séparément.
-- Langue du site : français.
+- Langues du site : **bilingue français / anglais** (français par défaut, sélecteur FR/EN). Tout texte ajouté doit exister dans les deux langues.
 
 ## Projet technique
 - Site statique généré avec **Eleventy (11ty)** et npm, initialement créé par une autre IA : vérifier la structure avant de supposer quoi que ce soit.
