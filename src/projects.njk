@@ -6,21 +6,38 @@ pagination:
 permalink: "/projects/{{ project.slug }}/index.html"
 layout: layouts/base.njk
 eleventyComputed:
-  title: "{{ project.name }} — Eric Van Hees"
+  title: "{{ project.name | loc('fr') }} — {{ project.client }} — Eric Van Hees"
 ---
 <main id="main-content" class="project-page">
   <div class="project-head section-wrap">
     <a class="back-link" href="{{ '/#projects' | url }}"><span aria-hidden="true">←</span><span data-locale="fr">Tous les projets</span><span data-locale="en" hidden>All projects</span></a>
-    <div class="project-title-row"><div><p class="eyebrow">{{ project.number }} / <span data-locale="fr">{{ project.role.fr }}</span><span data-locale="en" hidden>{{ project.role.en }}</span>{% if project.fictional %}<span class="concept-tag"><span data-locale="fr"> · Étude fictive</span><span data-locale="en" hidden> · Concept study</span></span>{% endif %}</p><h1>{{ project.name }}</h1></div><div class="project-facts"><p><span data-locale="fr">Client</span><span data-locale="en" hidden>Client</span><strong>{{ project.client }}</strong></p><p><span data-locale="fr">Année</span><span data-locale="en" hidden>Year</span><strong>{{ project.year }}</strong></p><p><span data-locale="fr">Rôle</span><span data-locale="en" hidden>Role</span><strong><span data-locale="fr">{{ project.role.fr }}</span><span data-locale="en" hidden>{{ project.role.en }}</span></strong></p></div></div>
-    <p class="project-intro"><span data-locale="fr">{{ project.intro.fr }}</span><span data-locale="en" hidden>{{ project.intro.en }}</span></p>
+    <div class="project-title-row">
+      <div>
+        <p class="eyebrow">{{ project.number }} / <span data-locale="fr">{{ project.category.fr }}</span><span data-locale="en" hidden>{{ project.category.en }}</span></p>
+        <h1><span data-locale="fr">{{ project.name | loc('fr') }}</span><span data-locale="en" hidden>{{ project.name | loc('en') }}</span></h1>
+      </div>
+      {# Seules les informations connues sont affichées : rien n'est inventé #}
+      <div class="project-facts">
+        <p>Client<strong>{{ project.client }}</strong></p>
+        {% if project.year %}<p><span data-locale="fr">Année</span><span data-locale="en" hidden>Year</span><strong>{{ project.year }}</strong></p>{% endif %}
+        <p><span data-locale="fr">Discipline</span><span data-locale="en" hidden>Discipline</span><strong><span data-locale="fr">{{ project.category.fr }}</span><span data-locale="en" hidden>{{ project.category.en }}</span></strong></p>
+      </div>
+    </div>
+    {% if project.intro %}<p class="project-intro"><span data-locale="fr">{{ project.intro.fr }}</span><span data-locale="en" hidden>{{ project.intro.en }}</span></p>{% endif %}
   </div>
-  <div class="project-cover section-wrap {{ project.theme }}"><img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}"></div>
-  <section class="project-story section-wrap" aria-label="Présentation du projet">
+  <div class="project-cover section-wrap"><img src="{{ project.cover | url }}"{% if project.coverPosition %} style="object-position:{{ project.coverPosition }}"{% endif %} alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}"></div>
+  <section class="project-story section-wrap" aria-label="Présentation du projet / About the project">
     <p class="eyebrow"><span data-locale="fr">Le projet</span><span data-locale="en" hidden>The project</span></p>
-    <div class="story-copy"><div data-locale="fr">{% for paragraph in project.description.fr %}<p>{{ paragraph }}</p>{% endfor %}</div><div data-locale="en" hidden>{% for paragraph in project.description.en %}<p>{{ paragraph }}</p>{% endfor %}</div><div class="project-credit"><span data-locale="fr">Intervention</span><span data-locale="en" hidden>Scope</span><strong><span data-locale="fr">{{ project.credits.fr }}</span><span data-locale="en" hidden>{{ project.credits.en }}</span></strong></div></div>
+    <div class="story-copy">
+      <div data-locale="fr">{% for paragraph in project.description.fr %}<p>{{ paragraph }}</p>{% endfor %}</div>
+      <div data-locale="en" hidden>{% for paragraph in project.description.en %}<p>{{ paragraph }}</p>{% endfor %}</div>
+      {% if project.award %}<div class="project-credit project-award"><span><span data-locale="fr">Distinction</span><span data-locale="en" hidden>Award</span></span><strong><span data-locale="fr">{{ project.award.fr }}</span><span data-locale="en" hidden>{{ project.award.en }}</span></strong></div>{% endif %}
+      {% if project.credits %}<div class="project-credit"><span><span data-locale="fr">Intervention</span><span data-locale="en" hidden>Scope</span></span><strong><span data-locale="fr">{{ project.credits.fr }}</span><span data-locale="en" hidden>{{ project.credits.en }}</span></strong></div>{% endif %}
+    </div>
   </section>
-  <section class="project-gallery section-wrap" aria-label="Galerie du projet">
-    {% for item in project.gallery %}<figure class="gallery-item {{ item.layout }} {{ 'campaign-board board-' + loop.index if project.real }}"><div class="gallery-image"><img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy"></div>{% if item.label %}<figcaption><span data-locale="fr">{{ item.label.fr }}</span><span data-locale="en" hidden>{{ item.label.en }}</span></figcaption>{% endif %}</figure>{% endfor %}
+  {# Héliopolis garde ses recadrages de campagne ; les autres projets montrent les visuels entiers #}
+  <section class="project-gallery section-wrap {{ '' if project.real else 'gallery-natural' }}" aria-label="Galerie du projet / Project gallery">
+    {% for item in project.gallery %}{% if project.real or item.src != project.cover %}<figure class="gallery-item {{ item.layout }} {{ 'campaign-board board-' + loop.index if project.real }}"><div class="gallery-image"><img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy"></div>{% if item.label %}<figcaption><span data-locale="fr">{{ item.label.fr }}</span><span data-locale="en" hidden>{{ item.label.en }}</span></figcaption>{% endif %}</figure>{% endif %}{% endfor %}
   </section>
-  {% if projects.length > 1 %}<nav class="next-project section-wrap" aria-label="Projet suivant"><span class="eyebrow"><span data-locale="fr">Continuer la visite</span><span data-locale="en" hidden>Keep exploring</span></span>{% set next = projects | nextProject(project.slug) %}<a href="{{ ('/projects/' + next.slug + '/') | url }}"><span class="next-name">{{ next.name }}</span><span class="next-arrow" aria-hidden="true">↗</span></a></nav>{% endif %}
+  {% if projects.length > 1 %}{% set next = projects | nextProject(project.slug) %}<nav class="next-project section-wrap" aria-label="Projet suivant / Next project"><span class="eyebrow"><span data-locale="fr">Projet suivant</span><span data-locale="en" hidden>Next project</span></span><a href="{{ ('/projects/' + next.slug + '/') | url }}"><span class="next-name"><span data-locale="fr">{{ next.name | loc('fr') }}</span><span data-locale="en" hidden>{{ next.name | loc('en') }}</span></span><span class="next-arrow" aria-hidden="true">↗</span></a></nav>{% endif %}
 </main>

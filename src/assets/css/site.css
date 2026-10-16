@@ -8,3 +8,11 @@
 /* Mention verticale « Directeur artistique | Artistic director » reprise du book (grand écran uniquement) */
 .side-mention{display:none}
 @media(min-width:1280px){.side-mention{position:absolute;z-index:5;top:150px;left:calc(var(--gutter)/2 - 6px);margin:0;display:flex;align-items:center;gap:16px;writing-mode:vertical-rl;transform:rotate(180deg);font-size:9px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--ink)}.side-mention span:first-child{color:var(--muted)}.side-mention-bar{width:1px;height:14px;background:var(--ink)}}
+/* Galerie des études de cas : visuels affichés entiers, sans recadrage */
+.gallery-natural .gallery-image{aspect-ratio:auto;background:none}.gallery-natural .gallery-image img{height:auto}
+.project-award{margin-top:28px}.project-award strong{color:var(--ink)}
+/* Numéro de carte lisible quel que soit le visuel */
+.card-number{background:var(--ink);padding:5px 8px;line-height:1}
+/* Cadrages : cartes au format des visuels (16:10) et couverture sans bandes noires */
+.card-image{height:auto;aspect-ratio:16/10}
+.project-cover{background:none}

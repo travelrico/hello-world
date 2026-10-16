@@ -1,9 +1,538 @@
 [
   {
-    "slug":"heliopolis","number":"01","name":"Héliopolis®","client":"Actionpin","year":"2026","role":{"fr":"Direction artistique · Campagne","en":"Art direction · Campaign"},"category":{"fr":"Agriculture · Campagne","en":"Agriculture · Campaign"},"cover":"/assets/images/heliopolis_05.jpg","coverAlt":{"fr":"Campagne Héliopolis : une pêche protégée par un halo lumineux, sur fond de paysage agricole","en":"Héliopolis campaign: a peach protected by a luminous halo against an agricultural landscape"},"theme":"heliopolis","real":true,
-    "intro":{"fr":"Rendre visible une protection qu’on ne voit pas.","en":"Making an invisible layer of protection visible."},
-    "description":{"fr":["Héliopolis® est une technologie de protection des cultures développée par Actionpin. Pour sa campagne 2026, l’enjeu était de traduire un bénéfice agronomique discret en une idée immédiatement lisible.","La direction artistique met en scène un fruit au cœur du soleil, protégé par un halo lumineux. La lumière devient à la fois menace et alliée : une métaphore simple, déclinable sur les supports de campagne et ancrée dans l’univers agricole."],"en":["Héliopolis® is a crop protection technology developed by Actionpin. For its 2026 campaign, the challenge was to turn a subtle agricultural benefit into an idea people could understand at a glance.","The art direction places a fruit at the heart of the sun, protected by a luminous halo. Light becomes both threat and ally: a simple metaphor that can extend across campaign formats while staying rooted in agriculture."]},
-    "credits":{"fr":"Direction artistique, concept de campagne, identité visuelle","en":"Art direction, campaign concept, visual identity"},"gallery":[{"src":"/assets/images/heliopolis_05.jpg","alt":{"fr":"Visuel de campagne Actionpin Héliopolis, déclinaison numérique","en":"Actionpin Héliopolis campaign visual, digital adaptation"},"layout":"wide","label":{"fr":"Le soleil fait des ravages. Héliopolis fait barrage.","en":"When the sun does damage, Héliopolis stands guard."}},{"src":"/assets/images/heliopolis_05.jpg","alt":{"fr":"Détail de la campagne Héliopolis consacré à la protection du fruit","en":"Detail of the Héliopolis campaign showing the fruit protection concept"},"layout":"detail","label":{"fr":"Une protection mise en lumière.","en":"Protection, brought into the light."}},{"src":"/assets/images/heliopolis_05.jpg","alt":{"fr":"Composition campagne Héliopolis avec la pêche et son halo protecteur","en":"Héliopolis campaign composition with a peach and its protective halo"},"layout":"wide","label":{"fr":"Un bénéfice concret. Une image immédiate.","en":"A tangible benefit. An instant image."}},{"src":"/assets/images/heliopolis_05.jpg","alt":{"fr":"Détail de campagne Héliopolis et de ses codes couleur","en":"Detail of Héliopolis campaign and its color palette"},"layout":"detail","label":{"fr":"La preuve au cœur du récit.","en":"Proof at the heart of the story."}},{"src":"/assets/images/heliopolis_05.jpg","alt":{"fr":"Visuel de campagne Héliopolis, version grand format","en":"Héliopolis campaign visual, large-format version"},"layout":"wide","label":{"fr":"Cultiver la confiance, saison après saison.","en":"Growing confidence, season after season."}}],
-    "missingAssets":true
+    "slug": "oie-we-need-you",
+    "name": "We Need You",
+    "client": "OIE / WOAA",
+    "category": {
+      "fr": "Campagne internationale",
+      "en": "International campaign"
+    },
+    "award": {
+      "fr": "Grand Prix du Public, Prix Empreintes AACC 2019",
+      "en": "Public Grand Prix, AACC Empreintes Awards 2019"
+    },
+    "cover": "/assets/images/projets/oie-we-need-you-01.webp",
+    "coverAlt": {
+      "fr": "Affiche « We Need You » : une poule tient l’affiche de la campagne contre l’antibiorésistance",
+      "en": "“We Need You” poster: a hen holds the antimicrobial resistance campaign poster"
+    },
+    "intro": {
+      "fr": "Sensibiliser les acteurs de la santé animale à l’antibiorésistance.",
+      "en": "Raising awareness of antibiotic resistance among animal health professionals."
+    },
+    "description": {
+      "fr": [
+        "Objectif de cette campagne internationale : sensibiliser les acteurs de la santé animale à l’antibiorésistance en créant des visuels percutants et des éléments facilement identifiables pour ancrer la campagne dans le temps."
+      ],
+      "en": [
+        "The goal of this international campaign was to raise awareness about antibiotic resistance among animal health professionals. The goal was to create impactful visuals, but above all, easily identifiable elements to anchor the campaign over time and ensure its sustainability, as behavioral changes take time."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/oie-we-need-you-01.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Affiche principale de la campagne « We Need You »",
+          "en": "Main “We Need You” campaign poster"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-we-need-you-03.webp",
+        "alt": {
+          "fr": "Déclinaison de l’affiche avec plusieurs animaux d’élevage",
+          "en": "Poster variation featuring several farm animals"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-we-need-you-02.webp",
+        "alt": {
+          "fr": "Double page du guide de déploiement de la campagne",
+          "en": "Spread from the campaign deployment guide"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-we-need-you-05.webp",
+        "alt": {
+          "fr": "Double page de la brochure destinée aux fabricants d’aliments",
+          "en": "Brochure spread for animal feed manufacturers"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-we-need-you-04.webp",
+        "alt": {
+          "fr": "Storyboard de l’animation de la campagne",
+          "en": "Campaign animation storyboard"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-we-need-you-06.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Déclinaisons de la campagne pour les réseaux sociaux sur smartphone",
+          "en": "Social media adaptations of the campaign on smartphones"
+        }
+      }
+    ],
+    "number": "01"
+  },
+  {
+    "slug": "oie-plan-strategique",
+    "name": {
+      "fr": "7e Plan stratégique",
+      "en": "7th Strategic Plan"
+    },
+    "client": "OIE / WOAA",
+    "category": {
+      "fr": "Identité · Édition · Événement",
+      "en": "Identity · Publishing · Event"
+    },
+    "cover": "/assets/images/projets/oie-plan-strategique-01.webp",
+    "coverAlt": {
+      "fr": "Couverture du rapport « 7e Plan stratégique de l’OIE »",
+      "en": "Cover of the “OIE 7th Strategic Plan” report"
+    },
+    "intro": {
+      "fr": "Une image renouvelée, en accord avec de nouvelles orientations stratégiques.",
+      "en": "A renewed image, in line with new strategic directions."
+    },
+    "description": {
+      "fr": [
+        "L’Office International des Épizooties, désormais la World Organisation for Animal Health.",
+        "Création de l’identité pour sa 88e Session Générale : ce rapport a fourni à l’organisation internationale une image renouvelée et en accord avec ses récentes orientations stratégiques."
+      ],
+      "en": [
+        "The International Office of Epizootics, now the World Organisation for Animal Health.",
+        "Accompanied by the identity for its 88th General Session, this report provided this international organisation with a renewed image, in line with its recent strategic directions."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-01.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Couverture du rapport stratégique",
+          "en": "Strategic report cover"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-02.webp",
+        "alt": {
+          "fr": "Double page « Vision » du rapport",
+          "en": "“Vision” spread from the report"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-03.webp",
+        "alt": {
+          "fr": "Double page « Making a new way everyday, everywhere »",
+          "en": "“Making a new way everyday, everywhere” spread"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-04.webp",
+        "alt": {
+          "fr": "Double page « Overview of technical activities »",
+          "en": "“Overview of technical activities” spread"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-05.webp",
+        "alt": {
+          "fr": "Bannière de la 88e Session Générale dans un hall d’accueil",
+          "en": "88th General Session banner in an entrance hall"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-06.webp",
+        "alt": {
+          "fr": "Panneau d’accueil « Welcome » de la Session Générale",
+          "en": "“Welcome” sign for the General Session"
+        }
+      },
+      {
+        "src": "/assets/images/projets/oie-plan-strategique-07.webp",
+        "alt": {
+          "fr": "Écran de scène lors de la Session Générale",
+          "en": "Stage screen during the General Session"
+        }
+      }
+    ],
+    "number": "02"
+  },
+  {
+    "slug": "ceva-state-of-the-heart",
+    "name": "State of the Heart",
+    "client": "Ceva",
+    "year": "2022",
+    "category": {
+      "fr": "Événement · Identité",
+      "en": "Event · Identity"
+    },
+    "cover": "/assets/images/projets/ceva-state-of-the-heart-01.webp",
+    "coverAlt": {
+      "fr": "Visuel « State of the Heart » : des mains protègent un cœur orange stylisé",
+      "en": "“State of the Heart” visual: hands protecting a stylised orange heart"
+    },
+    "intro": {
+      "fr": "Une identité pour un symposium de cardiologie humaine et animale.",
+      "en": "An identity for a human and animal cardiology symposium."
+    },
+    "description": {
+      "fr": [
+        "Cet évènement en duplex entre Austin au Texas et Bordeaux a rassemblé un grand nombre d’experts en cardiologie humaine et animale. Il a permis au laboratoire Ceva de confirmer sa position d’acteur majeur dans ce domaine.",
+        "L’identité créée autour de ce rendez-vous met en image ces objectifs de communication et de positionnement."
+      ],
+      "en": [
+        "This duplex event, held between Austin (US) and Bordeaux, brought together a large number of experts in human and animal cardiology. It allowed Ceva to confirm its position as a major player in this field.",
+        "The identity created around this event illustrates these communication and positioning objectives."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/ceva-state-of-the-heart-01.webp",
+        "alt": {
+          "fr": "Visuel principal du symposium",
+          "en": "Main symposium visual"
+        }
+      },
+      {
+        "src": "/assets/images/projets/ceva-state-of-the-heart-05.webp",
+        "alt": {
+          "fr": "Planche « Save the date » et signalétique de salle",
+          "en": "“Save the date” board and room signage"
+        }
+      },
+      {
+        "src": "/assets/images/projets/ceva-state-of-the-heart-03.webp",
+        "alt": {
+          "fr": "Signalétique du symposium dans les espaces d’accueil",
+          "en": "Symposium signage in the reception areas"
+        }
+      },
+      {
+        "src": "/assets/images/projets/ceva-state-of-the-heart-04.webp",
+        "alt": {
+          "fr": "Totems et kakémonos du symposium",
+          "en": "Symposium totems and roll-up banners"
+        }
+      },
+      {
+        "src": "/assets/images/projets/ceva-state-of-the-heart-02.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Annonce du duplex Austin – Bordeaux du 21 juin 2022",
+          "en": "Announcement of the Austin – Bordeaux duplex on 21 June 2022"
+        }
+      }
+    ],
+    "number": "03",
+    "coverPosition": "center 65%"
+  },
+  {
+    "slug": "enalees",
+    "name": "Enalees",
+    "client": "Enalees",
+    "category": {
+      "fr": "Identité visuelle",
+      "en": "Visual identity"
+    },
+    "cover": "/assets/images/projets/enalees-01.webp",
+    "coverAlt": {
+      "fr": "Visuel Enalees « La PCR dans votre clinique » : un homme et son chien",
+      "en": "Enalees “PCR in your clinic” visual: a man with his dog"
+    },
+    "intro": {
+      "fr": "Inscrire une marque de diagnostic dans le courant Art nouveau.",
+      "en": "Bringing a diagnostics brand into the Art Nouveau movement."
+    },
+    "description": {
+      "fr": [
+        "Enalees propose des tests de diagnostic moléculaire rapides, simples et fiables pour les animaux de compagnie.",
+        "Le souhait d’inscrire son image dans le courant historique « Art nouveau » a constitué un challenge artistique à la fois complexe et captivant."
+      ],
+      "en": [
+        "Enalees offers fast, simple, and reliable molecular diagnostic tests for pets.",
+        "The desire to inscribe its image in the historical “Art Nouveau” movement presented a complex and captivating artistic challenge."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/enalees-01.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Annonce « La PCR dans votre clinique »",
+          "en": "“PCR in your clinic” advertisement"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-06.webp",
+        "alt": {
+          "fr": "Illustration Art nouveau et accroche « Tester, informer, traiter »",
+          "en": "Art Nouveau illustration with the “Test, inform, treat” tagline"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-07.webp",
+        "alt": {
+          "fr": "Illustration Art nouveau d’un vétérinaire et d’un chien",
+          "en": "Art Nouveau illustration of a vet and a dog"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-02.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Kakémonos Enalees suspendus dans un salon professionnel",
+          "en": "Enalees hanging banners at a trade show"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-05.webp",
+        "alt": {
+          "fr": "Brochures Enalees ouvertes",
+          "en": "Open Enalees brochures"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-08.webp",
+        "alt": {
+          "fr": "Logotype Enalees sur fonds de couleur",
+          "en": "Enalees logotype on coloured backgrounds"
+        }
+      },
+      {
+        "src": "/assets/images/projets/enalees-03.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Annonce « Une longueur d’avance »",
+          "en": "“One step ahead” advertisement"
+        }
+      }
+    ],
+    "number": "04"
+  },
+  {
+    "slug": "boehringer-gamme-vaccinale",
+    "name": {
+      "fr": "Gamme vaccinale avicole",
+      "en": "Poultry vaccine range"
+    },
+    "client": "Boehringer Ingelheim",
+    "category": {
+      "fr": "Refonte de marques · Packaging",
+      "en": "Brand redesign · Packaging"
+    },
+    "cover": "/assets/images/projets/boehringer-gamme-vaccinale-03.webp",
+    "coverAlt": {
+      "fr": "Packagings et stands de la gamme vaccinale avicole",
+      "en": "Packaging and stands for the poultry vaccine range"
+    },
+    "intro": {
+      "fr": "Une vue d’ensemble des propositions visuelles pour la refonte d’un catalogue de vaccins.",
+      "en": "An overview of the visual proposals for redesigning a vaccine catalogue."
+    },
+    "description": {
+      "fr": [
+        "L’objectif de cette recommandation était la refonte des marques du catalogue de vaccination avicole du laboratoire. Voici une vue d’ensemble des propositions visuelles présentées."
+      ],
+      "en": [
+        "The objective of this recommendation was to redesign the brands in the laboratory’s poultry vaccination catalog. Here’s an overview of the visual proposals presented."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/boehringer-gamme-vaccinale-02.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Planche de la recommandation : principes graphiques, couleurs et logotypes des vaccins",
+          "en": "Recommendation board: graphic principles, colours and vaccine logotypes"
+        }
+      },
+      {
+        "src": "/assets/images/projets/boehringer-gamme-vaccinale-03.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Planche de la recommandation : packagings, affiches et stands",
+          "en": "Recommendation board: packaging, posters and stands"
+        }
+      }
+    ],
+    "number": "05"
+  },
+  {
+    "slug": "nexgard",
+    "name": "NexGard",
+    "client": "Boehringer Ingelheim",
+    "category": {
+      "fr": "Plateforme de marque · Campagne",
+      "en": "Brand platform · Campaign"
+    },
+    "cover": "/assets/images/projets/nexgard-02.webp",
+    "coverAlt": {
+      "fr": "Visuel NexGard « Be flexible » : un teckel très allongé sur fond bleu",
+      "en": "NexGard “Be flexible” visual: a very long dachshund on a blue background"
+    },
+    "intro": {
+      "fr": "Les ingrédients visuels essentiels d’une plateforme de marque.",
+      "en": "The essential visual ingredients of a brand platform."
+    },
+    "description": {
+      "fr": [
+        "Les recommandations graphiques réalisées présentent les ingrédients visuels essentiels à toute plateforme de marque. J’y mets en scène les grands principes graphiques et y décris des identités clairement définies."
+      ],
+      "en": [
+        "Graphic guidelines present the essential visual ingredients for any brand platform. I showcase the main graphic principles and describe clearly defined identities."
+      ]
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/projets/nexgard-02.webp",
+        "layout": "wide",
+        "alt": {
+          "fr": "Visuel « Be flexible » avec un teckel",
+          "en": "“Be flexible” visual with a dachshund"
+        }
+      },
+      {
+        "src": "/assets/images/projets/nexgard-03.webp",
+        "alt": {
+          "fr": "Visuel « Dogs have a voice too! »",
+          "en": "“Dogs have a voice too!” visual"
+        }
+      },
+      {
+        "src": "/assets/images/projets/nexgard-04.webp",
+        "alt": {
+          "fr": "Visuel « It’s a match! » avec deux smartphones",
+          "en": "“It’s a match!” visual with two smartphones"
+        }
+      },
+      {
+        "src": "/assets/images/projets/nexgard-05.webp",
+        "alt": {
+          "fr": "Visuel « Be flexible » avec un chien qui s’étire",
+          "en": "“Be flexible” visual with a stretching dog"
+        }
+      },
+      {
+        "src": "/assets/images/projets/nexgard-06.webp",
+        "alt": {
+          "fr": "Dépliants de la campagne",
+          "en": "Campaign leaflets"
+        }
+      },
+      {
+        "src": "/assets/images/projets/nexgard-07.webp",
+        "alt": {
+          "fr": "Planche des couleurs de la plateforme de marque",
+          "en": "Brand platform colour board"
+        }
+      }
+    ],
+    "number": "06",
+    "coverPosition": "left center"
+  },
+  {
+    "slug": "heliopolis",
+    "number": "07",
+    "name": "Héliopolis®",
+    "client": "Actionpin",
+    "year": "2026",
+    "role": {
+      "fr": "Direction artistique · Campagne",
+      "en": "Art direction · Campaign"
+    },
+    "category": {
+      "fr": "Agriculture · Campagne",
+      "en": "Agriculture · Campaign"
+    },
+    "cover": "/assets/images/heliopolis_05.jpg",
+    "coverAlt": {
+      "fr": "Campagne Héliopolis : une pêche protégée par un halo lumineux, sur fond de paysage agricole",
+      "en": "Héliopolis campaign: a peach protected by a luminous halo against an agricultural landscape"
+    },
+    "theme": "heliopolis",
+    "real": true,
+    "intro": {
+      "fr": "Rendre visible une protection qu’on ne voit pas.",
+      "en": "Making an invisible layer of protection visible."
+    },
+    "description": {
+      "fr": [
+        "Héliopolis® est une technologie de protection des cultures développée par Actionpin. Pour sa campagne 2026, l’enjeu était de traduire un bénéfice agronomique discret en une idée immédiatement lisible.",
+        "La direction artistique met en scène un fruit au cœur du soleil, protégé par un halo lumineux. La lumière devient à la fois menace et alliée : une métaphore simple, déclinable sur les supports de campagne et ancrée dans l’univers agricole."
+      ],
+      "en": [
+        "Héliopolis® is a crop protection technology developed by Actionpin. For its 2026 campaign, the challenge was to turn a subtle agricultural benefit into an idea people could understand at a glance.",
+        "The art direction places a fruit at the heart of the sun, protected by a luminous halo. Light becomes both threat and ally: a simple metaphor that can extend across campaign formats while staying rooted in agriculture."
+      ]
+    },
+    "credits": {
+      "fr": "Direction artistique, concept de campagne, identité visuelle",
+      "en": "Art direction, campaign concept, visual identity"
+    },
+    "gallery": [
+      {
+        "src": "/assets/images/heliopolis_05.jpg",
+        "alt": {
+          "fr": "Visuel de campagne Actionpin Héliopolis, déclinaison numérique",
+          "en": "Actionpin Héliopolis campaign visual, digital adaptation"
+        },
+        "layout": "wide",
+        "label": {
+          "fr": "Le soleil fait des ravages. Héliopolis fait barrage.",
+          "en": "When the sun does damage, Héliopolis stands guard."
+        }
+      },
+      {
+        "src": "/assets/images/heliopolis_05.jpg",
+        "alt": {
+          "fr": "Détail de la campagne Héliopolis consacré à la protection du fruit",
+          "en": "Detail of the Héliopolis campaign showing the fruit protection concept"
+        },
+        "layout": "detail",
+        "label": {
+          "fr": "Une protection mise en lumière.",
+          "en": "Protection, brought into the light."
+        }
+      },
+      {
+        "src": "/assets/images/heliopolis_05.jpg",
+        "alt": {
+          "fr": "Composition campagne Héliopolis avec la pêche et son halo protecteur",
+          "en": "Héliopolis campaign composition with a peach and its protective halo"
+        },
+        "layout": "wide",
+        "label": {
+          "fr": "Un bénéfice concret. Une image immédiate.",
+          "en": "A tangible benefit. An instant image."
+        }
+      },
+      {
+        "src": "/assets/images/heliopolis_05.jpg",
+        "alt": {
+          "fr": "Détail de campagne Héliopolis et de ses codes couleur",
+          "en": "Detail of Héliopolis campaign and its color palette"
+        },
+        "layout": "detail",
+        "label": {
+          "fr": "La preuve au cœur du récit.",
+          "en": "Proof at the heart of the story."
+        }
+      },
+      {
+        "src": "/assets/images/heliopolis_05.jpg",
+        "alt": {
+          "fr": "Visuel de campagne Héliopolis, version grand format",
+          "en": "Héliopolis campaign visual, large-format version"
+        },
+        "layout": "wide",
+        "label": {
+          "fr": "Cultiver la confiance, saison après saison.",
+          "en": "Growing confidence, season after season."
+        }
+      }
+    ]
   }
 ]
