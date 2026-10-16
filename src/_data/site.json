@@ -1,7 +1,7 @@
 {
   "name": "Eric Van Hees",
-  "email": "hello@ericvanhees.com",
-  "location": { "fr": "Direction artistique indépendante · France", "en": "Independent art direction · France" },
+  "email": "ericvhs@gmail.com",
+  "location": { "fr": "Paris / France", "en": "Paris / France" },
   "home": { "fr": "Accueil", "en": "Home" },
   "nav": {
     "projects": { "fr": "Projets", "en": "Projects" },
@@ -9,7 +9,7 @@
     "contact": { "fr": "Contact", "en": "Contact" }
   },
   "footer": {
-    "note": { "fr": "Des idées claires. Des images qui restent.", "en": "Clear ideas. Images that stay with you." },
+    "note": { "fr": "Créativité. Réactivité. Fiabilité.", "en": "Creativity. Responsiveness. Reliability." },
     "back": { "fr": "Retour en haut ↑", "en": "Back to top ↑" },
     "copyright": "© 2026 Eric Van Hees"
   }

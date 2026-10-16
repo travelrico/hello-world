@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f3f1ed">
-  <meta name="description" content="Portfolio d’Eric Van Hees, directeur artistique indépendant. Identités, campagnes et expériences numériques.">
-  <title>{{ title or "Eric Van Hees — Direction artistique" }}</title>
+  <meta name="description" content="Portfolio d’Eric Van Hees, Directeur Artistique Senior et Motion Designer à Paris. Campagnes, identités visuelles et motion design en santé animale.">
+  <title>{{ title or "Eric Van Hees — Directeur Artistique" }}</title>
+  <link rel="icon" href="{{ '/assets/images/logo-picto.svg' | url }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
   <script src="{{ '/assets/js/site.js' | url }}" defer></script>
 </head>
 <body>
   {% include "partials/header.njk" %}
+  {# Mention verticale reprise du book, visible sur grand écran uniquement #}
+  <p class="side-mention" aria-hidden="true"><span>Artistic director</span><span class="side-mention-bar"></span><span>Directeur artistique</span></p>
   {{ content | safe }}
   {% include "partials/footer.njk" %}
 </body>

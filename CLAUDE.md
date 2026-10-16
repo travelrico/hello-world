@@ -13,8 +13,11 @@ Je suis graphiste, pas développeur : **explique tes choix simplement**, sans ja
 
 ## Direction artistique (à respecter strictement)
 - Ambiance : minimaliste, actuelle, sobre, sophistication discrète, petits détails élégants.
-- Palette : quasi monochrome + **un seul accent terracotta**. Ne pas ajouter d'autres couleurs sans me demander.
-- Typographies : **Archivo Black** (titres), **Inter** (texte courant).
+- Palette : quasi monochrome (fond crème `#f3f1ed`, encre `#1c1c1c`) + **un seul accent `#00a19a`**. Ne pas ajouter d'autres couleurs sans me demander.
+  - L'accent n'est pas assez contrasté sur le fond crème pour du texte : le réserver aux pastilles, traits, soulignements, fonds et au logo (le texte foncé sur fond accent est lisible).
+- Typographie : **Albert Sans uniquement** (graisses 300 à 700), aucune autre police.
+- Logo : `logo-evh.svg` (picto + nom), `logo-evh-light.svg` (version pour fond foncé), `logo-picto.svg` (picto seul, icône d'onglet). Sources : book et fichiers de charte fournis par Eric.
+- Référence visuelle : le book PDF d'Eric (mise en page FR puis EN grisé, mention verticale « Directeur artistique | Artistic director »).
 - Beaucoup d'espace blanc, hiérarchie claire, animations discrètes et utiles (jamais gadget).
 - Les visuels et vidéos de projets sont le cœur du site : ils doivent être mis en valeur, chargés rapidement et bien cadrés.
 
