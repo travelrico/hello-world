@@ -74,7 +74,10 @@
         }
       }
     ],
-    "number": "01"
+    "number": "01",
+    "tags": [
+      "campagne"
+    ]
   },
   {
     "slug": "oie-plan-strategique",
@@ -158,7 +161,12 @@
         }
       }
     ],
-    "number": "02"
+    "number": "02",
+    "tags": [
+      "identite",
+      "edition",
+      "evenement"
+    ]
   },
   {
     "slug": "ceva-state-of-the-heart",
@@ -227,7 +235,11 @@
       }
     ],
     "number": "03",
-    "coverPosition": "center 65%"
+    "coverPosition": "center 65%",
+    "tags": [
+      "evenement",
+      "identite"
+    ]
   },
   {
     "slug": "enalees",
@@ -310,7 +322,10 @@
         }
       }
     ],
-    "number": "04"
+    "number": "04",
+    "tags": [
+      "identite"
+    ]
   },
   {
     "slug": "boehringer-gamme-vaccinale",
@@ -358,7 +373,11 @@
         }
       }
     ],
-    "number": "05"
+    "number": "05",
+    "tags": [
+      "packaging",
+      "identite"
+    ]
   },
   {
     "slug": "nexgard",
@@ -431,7 +450,11 @@
       }
     ],
     "number": "06",
-    "coverPosition": "left center"
+    "coverPosition": "left center",
+    "tags": [
+      "campagne",
+      "identite"
+    ]
   },
   {
     "slug": "heliopolis",
@@ -533,6 +556,9 @@
           "en": "Growing confidence, season after season."
         }
       }
+    ],
+    "tags": [
+      "campagne"
     ]
   }
 ]

@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#f3f1ed">
   <meta name="description" content="Portfolio d’Eric Van Hees, Directeur Artistique Senior et Motion Designer à Paris. Campagnes, identités visuelles et motion design en santé animale.">
   <title>{{ title or "Eric Van Hees — Directeur Artistique" }}</title>
+  {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
   <link rel="icon" href="{{ '/assets/images/logo-picto.svg' | url }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

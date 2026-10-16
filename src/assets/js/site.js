@@ -55,3 +55,60 @@
     revealItems.forEach((item) => observer.observe(item));
   } else revealItems.forEach((item) => item.classList.add("is-visible"));
 })();
+
+// Variante B (index) : aperçu du visuel qui suit la souris, sur ordinateur uniquement
+(() => {
+  const preview = document.querySelector(".index-preview");
+  const rows = document.querySelectorAll(".index-row[data-preview]");
+  if (!preview || !rows.length) return;
+  if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const image = preview.querySelector("img");
+  let targetX = 0, targetY = 0, x = 0, y = 0, frame = null;
+  // Léger retard du suivi pour un mouvement plus doux
+  const follow = () => {
+    x += (targetX - x) * 0.18;
+    y += (targetY - y) * 0.18;
+    preview.style.left = `${x}px`;
+    preview.style.top = `${y}px`;
+    frame = Math.abs(targetX - x) + Math.abs(targetY - y) > 0.5 ? requestAnimationFrame(follow) : null;
+  };
+  document.addEventListener("mousemove", (event) => {
+    targetX = event.clientX + 40;
+    targetY = event.clientY;
+    if (!frame) frame = requestAnimationFrame(follow);
+  });
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", (event) => {
+      if (!preview.classList.contains("is-visible")) { x = targetX = event.clientX + 40; y = targetY = event.clientY; }
+      image.src = row.dataset.preview;
+      preview.classList.add("is-visible");
+    });
+    row.addEventListener("mouseleave", () => preview.classList.remove("is-visible"));
+  });
+})();
+
+// Variante C (mosaïque) : filtres par discipline
+(() => {
+  const buttons = document.querySelectorAll(".mosaic-filters [data-filter]");
+  const items = document.querySelectorAll(".mosaic-item");
+  const status = document.querySelector(".mosaic-status");
+  if (!buttons.length) return;
+  buttons.forEach((button) => button.addEventListener("click", () => {
+    const filter = button.dataset.filter;
+    buttons.forEach((other) => other.setAttribute("aria-pressed", String(other === button)));
+    let visible = 0;
+    items.forEach((item) => {
+      const show = filter === "all" || item.dataset.tags.split(" ").includes(filter);
+      item.hidden = !show;
+      if (show) {
+        visible += 1;
+        // Relance l'animation d'apparition
+        item.style.animation = "none";
+        void item.offsetWidth;
+        item.style.animation = "";
+      }
+    });
+    if (status) status.textContent = `${visible} projet(s) / project(s)`;
+  }));
+})();

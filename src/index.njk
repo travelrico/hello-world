@@ -17,14 +17,7 @@ title: "Eric Van Hees — Directeur Artistique Senior & Motion Designer"
 
   <section class="projects-section section-wrap" id="projects" aria-labelledby="projects-title">
     <div class="section-heading reveal"><div><p class="eyebrow">01 / <span data-locale="fr">Sélection</span><span data-locale="en" hidden>Selected work</span></p><h2 id="projects-title"><span data-locale="fr">Projets</span><span data-locale="en" hidden>Projects</span><sup>{{ "0" if projects.length < 10 }}{{ projects.length }}</sup></h2></div><p class="section-note"><span data-locale="fr">Un aperçu de travaux récents et d’études de cas.</span><span data-locale="en" hidden>A selection of recent work and case studies.</span></p></div>
-    <div class="project-grid">
-      {% for project in projects %}
-      <a class="project-card reveal {{ 'card-featured' if loop.first else '' }}" href="{{ ('/projects/' + project.slug + '/') | url }}">
-        <div class="card-image"><img src="{{ project.cover | url }}"{% if project.coverPosition %} style="object-position:{{ project.coverPosition }}"{% endif %} alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}" loading="lazy"><span class="card-number">{{ project.number }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-        <div class="card-meta"><div><h3><span data-locale="fr">{{ project.name | loc('fr') }}</span><span data-locale="en" hidden>{{ project.name | loc('en') }}</span></h3><p>{{ project.client }} · <span data-locale="fr">{{ project.category.fr }}</span><span data-locale="en" hidden>{{ project.category.en }}</span></p></div>{% if project.year %}<span class="card-year">{{ project.year }}</span>{% endif %}</div>
-      </a>
-      {% endfor %}
-    </div>
+    {% include "partials/projects-grid.njk" %}
   </section>
 
   <section class="about-section section-wrap" id="about" aria-labelledby="about-title">

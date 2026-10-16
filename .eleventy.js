@@ -9,6 +9,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("loc", (value, lang) =>
     value && typeof value === "object" ? value[lang] : value
   );
+  // Nombre de projets portant une étiquette donnée (filtres de la mosaïque)
+  eleventyConfig.addFilter("countTag", (all, tag) =>
+    all.filter((item) => (item.tags || []).includes(tag)).length
+  );
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "_site" },
     pathPrefix: process.env.ELEVENTY_PATH_PREFIX || "/",
