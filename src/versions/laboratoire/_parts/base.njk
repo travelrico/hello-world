@@ -1,0 +1,36 @@
+{# Version 3 — Laboratoire : squelette (en-tête de document + correspondance) #}
+{% extends "src/versions/_commun/base.njk" %}
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/versions/laboratoire/style.css' | url }}">
+  <script src="{{ '/versions/laboratoire/script.js' | url }}" defer></script>
+{% endblock %}
+{% block bodyClass %}lb{% endblock %}
+{% block body %}
+{% from "macros.njk" import t, tt %}
+<header class="lb-head">
+  <a class="lb-brand" href="{{ '/versions/laboratoire/' | url }}"><img src="{{ '/assets/images/logo_picto_01.svg' | url }}" alt="" width="28" height="21"><span>Eric Van Hees</span></a>
+  <span class="lb-mono lb-head-doc">{{ tt("Rapport de projets", "Project report") }} · Réf. EVH-2026</span>
+  <nav class="lb-head-nav" aria-label="Navigation">
+    <a href="{{ '/versions/laboratoire/#etudes' | url }}">{{ tt("Études", "Studies") }}</a>
+    <a href="{{ '/versions/laboratoire/#figures' | url }}">{{ tt("Figures", "Figures") }}</a>
+    <a href="#correspondance">Contact</a>
+    <span class="lb-lang" role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button><button type="button" data-set-locale="en">EN</button></span>
+  </nav>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="lb-foot" id="correspondance">
+  <div class="lb-foot-grid">
+    <p class="lb-mono">{{ tt("Correspondance", "Correspondence") }}</p>
+    <a class="lb-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <p class="lb-mono">{{ t(site.location) }}</p>
+  </div>
+  <p class="lb-mono lb-foot-end">{{ site.footer.copyright }} · {{ t(site.footer.note) }}</p>
+</footer>
+{% endblock %}

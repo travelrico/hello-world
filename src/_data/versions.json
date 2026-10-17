@@ -2,43 +2,79 @@
   {
     "id": "editorial",
     "number": "1",
-    "name": { "fr": "Éditorial", "en": "Editorial" },
-    "intent": { "fr": "Un magazine de design : projet à la une, sommaire, articles.", "en": "A design magazine: cover story, contents, articles." },
+    "name": {
+      "fr": "Éditorial",
+      "en": "Editorial"
+    },
+    "intent": {
+      "fr": "Un magazine de design : projet à la une, sommaire, articles.",
+      "en": "A design magazine: cover story, contents, articles."
+    },
     "ready": true
   },
   {
     "id": "cinema",
     "number": "2",
-    "name": { "fr": "Cinéma", "en": "Cinema" },
-    "intent": { "fr": "Le motion designer : plein cadre, plan par plan, générique.", "en": "The motion designer: full frame, shot by shot, credits." },
+    "name": {
+      "fr": "Cinéma",
+      "en": "Cinema"
+    },
+    "intent": {
+      "fr": "Le motion designer : plein cadre, plan par plan, générique.",
+      "en": "The motion designer: full frame, shot by shot, credits."
+    },
     "ready": true
   },
   {
     "id": "laboratoire",
     "number": "3",
-    "name": { "fr": "Laboratoire", "en": "Laboratory" },
-    "intent": { "fr": "Le rapport scientifique : fiches, figures annotées, données.", "en": "The scientific report: data sheets, annotated figures, data." },
-    "ready": false
+    "name": {
+      "fr": "Laboratoire",
+      "en": "Laboratory"
+    },
+    "intent": {
+      "fr": "Le rapport scientifique : fiches, figures annotées, données.",
+      "en": "The scientific report: data sheets, annotated figures, data."
+    },
+    "ready": true
   },
   {
     "id": "brut",
     "number": "4",
-    "name": { "fr": "Brut", "en": "Raw" },
-    "intent": { "fr": "L'audace assumée : monospace, très grands titres, bordures épaisses.", "en": "Bold by design: monospace, huge titles, thick borders." },
-    "ready": false
+    "name": {
+      "fr": "Brut",
+      "en": "Raw"
+    },
+    "intent": {
+      "fr": "L'audace assumée : monospace, très grands titres, bordures épaisses.",
+      "en": "Bold by design: monospace, huge titles, thick borders."
+    },
+    "ready": true
   },
   {
     "id": "organique",
     "number": "5",
-    "name": { "fr": "Organique", "en": "Organic" },
-    "intent": { "fr": "La chaleur du vivant : formes douces, tons chauds, rythme lent.", "en": "The warmth of living things: soft shapes, warm tones, slow pace." },
+    "name": {
+      "fr": "Organique",
+      "en": "Organic"
+    },
+    "intent": {
+      "fr": "La chaleur du vivant : formes douces, tons chauds, rythme lent.",
+      "en": "The warmth of living things: soft shapes, warm tones, slow pace."
+    },
     "ready": false
   },
   {
     "id": "book",
     "number": "6",
-    "name": { "fr": "Book", "en": "Book" },
-    "intent": { "fr": "Le book PDF transposé : pages paysage, texte fixe, FR puis EN.", "en": "The PDF book, online: landscape pages, fixed text, FR then EN." },
+    "name": {
+      "fr": "Book",
+      "en": "Book"
+    },
+    "intent": {
+      "fr": "Le book PDF transposé : pages paysage, texte fixe, FR puis EN.",
+      "en": "The PDF book, online: landscape pages, fixed text, FR then EN."
+    },
     "ready": false
   }
 ]

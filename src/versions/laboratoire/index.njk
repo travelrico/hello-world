@@ -1,0 +1,68 @@
+---
+permalink: /versions/laboratoire/
+---
+{% extends "src/versions/laboratoire/_parts/base.njk" %}
+{% block title %}Laboratoire — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set clients = projects | uniqueClients %}
+{% set awards = projects | selectattr("award") %}
+
+{# Résumé + données clés (calculées à partir des projets) #}
+<section class="lb-abstract lb-grid-bg">
+  <div class="lb-abstract-text">
+    <p class="lb-mono lb-label">{{ tt("Résumé", "Abstract") }}</p>
+    <h1 class="lb-h1">{{ tt("Directeur artistique senior & motion designer.", "Senior art director & motion designer.") }}</h1>
+    <p class="lb-lede">{{ tt("Concepts, campagnes, identités visuelles ou contenus animés : j'accompagne les projets de la première idée à leur réalisation.", "Concepts, campaigns, visual identities or motion content: I work on projects from the initial idea through to final delivery.") }}</p>
+  </div>
+  <dl class="lb-keydata">
+    <div><dt class="lb-mono">{{ tt("Études présentées", "Studies presented") }}</dt><dd>{{ "0" if projects.length < 10 }}{{ projects.length }}</dd></div>
+    <div><dt class="lb-mono">Clients</dt><dd>{{ "0" if clients.length < 10 }}{{ clients.length }}</dd></div>
+    <div><dt class="lb-mono">{{ tt("Distinctions", "Awards") }}</dt><dd>{{ "0" if awards.length < 10 }}{{ awards.length }}</dd></div>
+    <div><dt class="lb-mono">{{ tt("Domaine", "Field") }}</dt><dd class="lb-dd-text">{{ tt("Santé animale", "Animal health") }}</dd></div>
+  </dl>
+</section>
+
+{# Tableau des études, filtrable par discipline #}
+<section class="lb-section" id="etudes">
+  <div class="lb-section-head">
+    <h2 class="lb-h2"><span class="lb-mono">01</span> {{ tt("Tableau des études", "Table of studies") }}</h2>
+    <div class="lb-filters" role="group" aria-label="Filtrer / Filter">
+      <button type="button" data-filter="all" aria-pressed="true">{{ tt("Toutes", "All") }}</button>
+      <button type="button" data-filter="campagne" aria-pressed="false">{{ tt("Campagne", "Campaign") }}</button>
+      <button type="button" data-filter="identite" aria-pressed="false">{{ tt("Identité", "Identity") }}</button>
+      <button type="button" data-filter="evenement" aria-pressed="false">{{ tt("Événement", "Event") }}</button>
+      <button type="button" data-filter="packaging" aria-pressed="false">Packaging</button>
+    </div>
+  </div>
+  <div class="lb-table" role="table" aria-label="Études / Studies">
+    <div class="lb-row lb-row--head lb-mono" role="row">
+      <span role="columnheader">Réf.</span><span role="columnheader">{{ tt("Étude", "Study") }}</span><span role="columnheader">Client</span><span role="columnheader">Discipline</span><span role="columnheader">{{ tt("Année", "Year") }}</span><span role="columnheader">{{ tt("Dist.", "Award") }}</span>
+    </div>
+    {% for p in projects %}
+    <a class="lb-row" role="row" href="{{ ('/versions/laboratoire/projects/' + p.slug + '/') | url }}" data-tags="{{ p.tags | join(' ') }}">
+      <span role="cell" class="lb-mono lb-ref">EVH-{{ p.number }}</span>
+      <span role="cell" class="lb-row-name"><span class="lb-thumb"><img src="{{ p.cover | url }}" alt="" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>{{ t(p.name) }}</span>
+      <span role="cell">{{ p.client }}</span>
+      <span role="cell" class="lb-muted">{{ t(p.category) }}</span>
+      <span role="cell" class="lb-mono">{{ p.year or "—" }}</span>
+      <span role="cell" class="lb-mono">{% if p.award %}<span class="lb-dot" title="{{ p.award.fr }}">●</span>{% else %}—{% endif %}</span>
+    </a>
+    {% endfor %}
+  </div>
+  <p class="lb-mono lb-note">● = {{ tt("projet distingué", "award-winning project") }} · — = {{ tt("non renseigné", "not specified") }}</p>
+</section>
+
+{# Planche des figures #}
+<section class="lb-section" id="figures">
+  <h2 class="lb-h2"><span class="lb-mono">02</span> {{ tt("Planche des figures", "Plate of figures") }}</h2>
+  <div class="lb-plate">
+    {% for p in projects %}
+    <a class="lb-fig" href="{{ ('/versions/laboratoire/projects/' + p.slug + '/') | url }}">
+      <span class="lb-fig-img"><img src="{{ p.cover | url }}" alt="{{ p.coverAlt.fr }}" data-alt-fr="{{ p.coverAlt.fr }}" data-alt-en="{{ p.coverAlt.en }}" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>
+      <span class="lb-mono">Fig. {{ p.number }} — {{ t(p.name) }}</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

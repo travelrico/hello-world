@@ -1,0 +1,51 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/brut/projects/{{ project.slug }}/"
+---
+{% extends "src/versions/brut/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Brut — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set imgs = project.gallery | withoutCover(project.cover) %}
+{% set next = projects | nextProject(project.slug) %}
+
+<header class="br-p-head">
+  <p class="br-mono"><a href="{{ '/versions/brut/#travaux' | url }}">← [ {{ tt("Travaux", "Work") }} ]</a> / {{ project.number }}</p>
+  <h1 class="br-p-title">{{ t(project.name) }}</h1>
+</header>
+
+{# Cases d'information : seules les données connues #}
+<dl class="br-facts">
+  <div><dt class="br-mono">Client</dt><dd>{{ project.client }}</dd></div>
+  <div><dt class="br-mono">Discipline</dt><dd>{{ t(project.category) }}</dd></div>
+  {% if project.year %}<div><dt class="br-mono">{{ tt("Année", "Year") }}</dt><dd>{{ project.year }}</dd></div>{% endif %}
+  {% if project.award %}<div class="br-facts-award"><dt class="br-mono">{{ tt("Distinction", "Award") }}</dt><dd>{{ t(project.award) }}</dd></div>{% endif %}
+</dl>
+
+<section class="br-p-body">
+  {% if project.intro %}<p class="br-p-intro">{{ t(project.intro) }}</p>{% endif %}
+  <div class="br-p-text" data-locale="fr">{% for para in project.description.fr %}<p>{{ para }}</p>{% endfor %}</div>
+  <div class="br-p-text" data-locale="en">{% for para in project.description.en %}<p>{{ para }}</p>{% endfor %}</div>
+</section>
+
+<div class="br-stack">
+  <figure class="br-shot">
+    <img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}">
+    <figcaption class="br-mono">[01] {{ t(project.coverAlt) }}</figcaption>
+  </figure>
+  {% for item in imgs %}
+  <figure class="br-shot">
+    <img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy">
+    <figcaption class="br-mono">[{{ "0" if loop.index + 1 < 10 }}{{ loop.index + 1 }}] {{ t(item.label) if item.label else t(item.alt) }}</figcaption>
+  </figure>
+  {% endfor %}
+</div>
+
+<a class="br-next" href="{{ ('/versions/brut/projects/' + next.slug + '/') | url }}">
+  <span class="br-mono">[ {{ tt("Suivant", "Next") }} — {{ next.number }} ]</span>
+  <span class="br-next-title">{{ t(next.name) }} →</span>
+</a>
+{% endblock %}

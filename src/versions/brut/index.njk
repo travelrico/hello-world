@@ -1,0 +1,36 @@
+---
+permalink: /versions/brut/
+---
+{% extends "src/versions/brut/_parts/base.njk" %}
+{% block title %}Brut — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+
+<section class="br-hero">
+  <h1 class="br-giant">Eric<br>Van Hees</h1>
+  <p class="br-hero-role br-mono">{{ tt("Directeur artistique senior & motion designer — Paris", "Senior art director & motion designer — Paris") }}</p>
+</section>
+
+{# Bandeau des domaines (rubriques du book) #}
+<div class="br-band" aria-hidden="true">
+  {% for i in range(0, 3) %}<span>{{ tt("Campagnes", "Campaigns") }} ✱ {{ tt("Identités visuelles", "Visual identities") }} ✱ Motion design ✱ {{ tt("Santé animale", "Animal health") }} ✱ </span>{% endfor %}
+</div>
+
+<section class="br-work" id="travaux">
+  <h2 class="br-mono br-work-head">[ {{ tt("Travaux", "Work") }} — {{ "0" if projects.length < 10 }}{{ projects.length }} ]</h2>
+  <ol class="br-list">
+    {% for p in projects %}
+    <li>
+      <a class="br-item" href="{{ ('/versions/brut/projects/' + p.slug + '/') | url }}">
+        <span class="br-num br-mono">{{ p.number }}</span>
+        <span class="br-item-text">
+          <span class="br-item-title">{{ t(p.name) }}</span>
+          <span class="br-mono">{{ p.client }} / {{ t(p.category) }}{% if p.year %} / {{ p.year }}{% endif %}</span>
+        </span>
+        <span class="br-item-img"><img src="{{ p.cover | url }}" alt="" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+</section>
+{% endblock %}

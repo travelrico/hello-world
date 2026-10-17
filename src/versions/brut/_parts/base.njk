@@ -1,0 +1,33 @@
+{# Version 4 — Brut : squelette (barre en cases + contact) #}
+{% extends "src/versions/_commun/base.njk" %}
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/versions/brut/style.css' | url }}">
+{% endblock %}
+{% block bodyClass %}br{% endblock %}
+{% block body %}
+{% from "macros.njk" import t, tt %}
+<header class="br-bar">
+  <a class="br-cell br-cell--name" href="{{ '/versions/brut/' | url }}">Eric Van Hees</a>
+  <span class="br-cell br-hide-s">{{ tt("DA + Motion", "AD + Motion") }}</span>
+  <a class="br-cell" href="{{ '/versions/brut/#travaux' | url }}">{{ tt("Travaux", "Work") }}</a>
+  <a class="br-cell" href="#contact">Contact</a>
+  <span class="br-cell br-lang" role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button><button type="button" data-set-locale="en">EN</button></span>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="br-foot" id="contact">
+  <p class="br-mono">[ Contact ]</p>
+  <a class="br-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  <div class="br-foot-row br-mono">
+    <span>{{ t(site.location) }}</span>
+    <span>{{ t(site.footer.note) }}</span>
+    <span>{{ site.footer.copyright }}</span>
+  </div>
+</footer>
+{% endblock %}

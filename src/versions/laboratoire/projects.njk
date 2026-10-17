@@ -1,0 +1,64 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/laboratoire/projects/{{ project.slug }}/"
+---
+{% extends "src/versions/laboratoire/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Laboratoire — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set figs = project.gallery | withoutCover(project.cover) %}
+{% set next = projects | nextProject(project.slug) %}
+
+<header class="lb-doc-head lb-grid-bg">
+  <p class="lb-mono lb-label"><a href="{{ '/versions/laboratoire/#etudes' | url }}">{{ tt("Tableau des études", "Table of studies") }}</a> / {{ tt("Fiche", "Sheet") }} EVH-{{ project.number }}</p>
+  <h1 class="lb-h1 lb-h1--doc">{{ t(project.name) }}</h1>
+  {% if project.intro %}<p class="lb-lede"><span class="lb-mono lb-inline-label">{{ tt("Résumé", "Abstract") }} —</span> {{ t(project.intro) }}</p>{% endif %}
+</header>
+
+<div class="lb-doc">
+  {# Fiche technique : seules les informations connues #}
+  <aside class="lb-sheet">
+    <p class="lb-mono lb-label">{{ tt("Fiche technique", "Data sheet") }}</p>
+    <dl>
+      <div><dt class="lb-mono">Réf.</dt><dd>EVH-{{ project.number }}</dd></div>
+      <div><dt class="lb-mono">Client</dt><dd>{{ project.client }}</dd></div>
+      <div><dt class="lb-mono">Discipline</dt><dd>{{ t(project.category) }}</dd></div>
+      {% if project.year %}<div><dt class="lb-mono">{{ tt("Année", "Year") }}</dt><dd>{{ project.year }}</dd></div>{% endif %}
+      {% if project.award %}<div><dt class="lb-mono">{{ tt("Distinction", "Award") }}</dt><dd>● {{ t(project.award) }}</dd></div>{% endif %}
+      <div><dt class="lb-mono">{{ tt("Figures", "Figures") }}</dt><dd>{{ figs.length + 1 }}</dd></div>
+    </dl>
+  </aside>
+
+  <div class="lb-doc-main">
+    <section>
+      <h2 class="lb-h3"><span class="lb-mono">1.</span> {{ tt("Contexte", "Context") }}</h2>
+      <div class="lb-text" data-locale="fr">{% for para in project.description.fr %}<p>{{ para }}</p>{% endfor %}</div>
+      <div class="lb-text" data-locale="en">{% for para in project.description.en %}<p>{{ para }}</p>{% endfor %}</div>
+    </section>
+
+    <section>
+      <h2 class="lb-h3"><span class="lb-mono">2.</span> Figures</h2>
+      <figure class="lb-figure">
+        <span class="lb-mono lb-fig-tag">Fig. {{ project.number }}.1</span>
+        <img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}">
+        <figcaption><span class="lb-mono">Fig. {{ project.number }}.1 —</span> {{ t(project.coverAlt) }}</figcaption>
+      </figure>
+      {% for item in figs %}
+      <figure class="lb-figure">
+        <span class="lb-mono lb-fig-tag">Fig. {{ project.number }}.{{ loop.index + 1 }}</span>
+        <img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy">
+        <figcaption><span class="lb-mono">Fig. {{ project.number }}.{{ loop.index + 1 }} —</span> {{ t(item.label) if item.label else t(item.alt) }}</figcaption>
+      </figure>
+      {% endfor %}
+    </section>
+  </div>
+</div>
+
+<a class="lb-next" href="{{ ('/versions/laboratoire/projects/' + next.slug + '/') | url }}">
+  <span class="lb-mono">{{ tt("Fiche suivante", "Next sheet") }} — EVH-{{ next.number }}</span>
+  <span class="lb-next-title">{{ t(next.name) }} <span aria-hidden="true">→</span></span>
+</a>
+{% endblock %}
