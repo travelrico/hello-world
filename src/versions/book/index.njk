@@ -1,0 +1,56 @@
+---
+permalink: /versions/book/
+snap: true
+---
+{% extends "src/versions/book/_parts/base.njk" %}
+{% block title %}Book — Eric Van Hees{% endblock %}
+{% block content %}
+
+{# Page 1 : couverture #}
+<section class="bk-page bk-cover">
+  <p class="bk-cover-name">Eric Van Hees</p>
+  <h1 class="bk-cover-box">Portfolio</h1>
+  <p class="bk-cover-hint">↓</p>
+</section>
+
+{# Page 2 : à propos (texte du book, FR puis EN) #}
+<section class="bk-page bk-about">
+  <div class="bk-col">
+    <h2 class="bk-sub">À propos de moi</h2>
+    <p class="bk-fr">Directeur Artistique Senior et Motion Designer, j'accompagne les projets de la première idée à leur réalisation. Concepts, campagnes, identités visuelles ou contenus animés : je cherche des solutions créatives, claires et efficaces. Mon approche repose sur une culture visuelle solide, une exigence constante, et la conviction que la forme ne vaut que si elle est juste.</p>
+    <h2 class="bk-sub bk-en">About me</h2>
+    <p class="bk-en">Senior Art Director and Motion Designer, I work on projects from the initial idea through to final delivery. Concepts, campaigns, visual identities or motion content: I focus on creating clear, effective and compelling creative solutions. My approach is built on a strong visual culture, consistently high standards, and the belief that good design is about more than aesthetics — it's about getting it right.</p>
+  </div>
+  <ol class="bk-toc">
+    {% for p in projects %}<li><a href="#p-{{ p.slug }}"><span>.{{ loop.index }}</span>{{ p.client }} — {{ p.name | loc('fr') }}</a></li>{% endfor %}
+  </ol>
+</section>
+
+{# Une page paysage par projet, mise en page du book : texte à gauche, mosaïque à droite #}
+{% for p in projects %}
+{% set imgs = p.gallery | withoutCover(p.cover) %}
+<section class="bk-page bk-project" id="p-{{ p.slug }}">
+  <div class="bk-col">
+    <h2 class="bk-title">{{ p.client }}</h2>
+    <h3 class="bk-sub">{{ p.name | loc('fr') }} / {{ p.category.fr }}</h3>
+    <p class="bk-fr">{{ p.description.fr[0] }}</p>
+    <span class="bk-dash" aria-hidden="true"></span>
+    <h3 class="bk-sub bk-en">{{ p.name | loc('en') }} / {{ p.category.en }}</h3>
+    <p class="bk-en">{{ p.description.en[0] }}</p>
+    <a class="bk-link" href="{{ ('/versions/book/projects/' + p.slug + '/') | url }}">Voir le projet · View project →</a>
+  </div>
+  <a class="bk-mosaic" href="{{ ('/versions/book/projects/' + p.slug + '/') | url }}" tabindex="-1" aria-hidden="true">
+    <span class="bk-mosaic-main"><img src="{{ p.cover | url }}" alt="" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>
+    {% for item in imgs %}{% if loop.index <= 3 %}<span class="bk-mosaic-thumb"><img src="{{ item.src | url }}" alt="" loading="lazy"></span>{% endif %}{% endfor %}
+  </a>
+</section>
+{% endfor %}
+
+{# Dernière page : contact #}
+<section class="bk-page bk-contact" id="contact">
+  <div class="bk-col">
+    <h2 class="bk-title">Contact</h2>
+    <p class="bk-fr">Eric Van Hees<br><a href="mailto:{{ site.email }}">{{ site.email }}</a><br>Paris / France</p>
+  </div>
+</section>
+{% endblock %}

@@ -62,7 +62,7 @@
       "fr": "La chaleur du vivant : formes douces, tons chauds, rythme lent.",
       "en": "The warmth of living things: soft shapes, warm tones, slow pace."
     },
-    "ready": false
+    "ready": true
   },
   {
     "id": "book",
@@ -75,6 +75,6 @@
       "fr": "Le book PDF transposé : pages paysage, texte fixe, FR puis EN.",
       "en": "The PDF book, online: landscape pages, fixed text, FR then EN."
     },
-    "ready": false
+    "ready": true
   }
 ]

@@ -1,0 +1,41 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/book/projects/{{ project.slug }}/"
+---
+{% extends "src/versions/book/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Book — Eric Van Hees{% endblock %}
+{% block content %}
+{% set imgs = project.gallery | withoutCover(project.cover) %}
+{% set next = projects | nextProject(project.slug) %}
+
+<div class="bk-spread">
+  {# Colonne de texte fixe, FR puis EN grisé (seules les informations connues) #}
+  <div class="bk-col bk-col--sticky">
+    <a class="bk-back" href="{{ ('/versions/book/#p-' + project.slug) | url }}">← Book</a>
+    <h1 class="bk-title">{{ project.client }}</h1>
+    <h2 class="bk-sub">{{ project.name | loc('fr') }} / {{ project.category.fr }}{% if project.year %} / {{ project.year }}{% endif %}</h2>
+    {% for para in project.description.fr %}<p class="bk-fr">{{ para }}</p>{% endfor %}
+    {% if project.award %}<p class="bk-fr bk-award">.1 {{ project.award.fr }}</p>{% endif %}
+    <span class="bk-dash" aria-hidden="true"></span>
+    <h2 class="bk-sub bk-en">{{ project.name | loc('en') }} / {{ project.category.en }}</h2>
+    {% for para in project.description.en %}<p class="bk-en">{{ para }}</p>{% endfor %}
+    {% if project.award %}<p class="bk-en bk-award">.1 {{ project.award.en }}</p>{% endif %}
+  </div>
+
+  {# Visuels entiers, en mosaïque #}
+  <div class="bk-plates">
+    <figure class="bk-plate bk-plate--wide"><img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}"></figure>
+    {% for item in imgs %}
+    <figure class="bk-plate{% if item.layout == 'wide' %} bk-plate--wide{% endif %}"><img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" loading="lazy"></figure>
+    {% endfor %}
+  </div>
+</div>
+
+<a class="bk-next" href="{{ ('/versions/book/projects/' + next.slug + '/') | url }}">
+  <span class="bk-sub">Projet suivant · Next project</span>
+  <span class="bk-title">{{ next.client }} — {{ next.name | loc('fr') }} →</span>
+</a>
+{% endblock %}

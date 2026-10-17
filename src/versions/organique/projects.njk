@@ -1,0 +1,51 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/organique/projects/{{ project.slug }}/"
+---
+{% extends "src/versions/organique/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Organique — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set imgs = project.gallery | withoutCover(project.cover) %}
+{% set next = projects | nextProject(project.slug) %}
+
+<section class="og-p-hero">
+  <div class="og-p-text og-reveal">
+    <a class="og-back" href="{{ '/versions/organique/#projets' | url }}">← {{ tt("Tous les projets", "All work") }}</a>
+    <h1 class="og-h1">{{ t(project.name) }}</h1>
+    {% if project.intro %}<p class="og-lede">{{ t(project.intro) }}</p>{% endif %}
+    {# Seules les informations connues #}
+    <div class="og-chips">
+      <span class="og-chip">{{ project.client }}</span>
+      <span class="og-chip og-chip--ghost">{{ t(project.category) }}</span>
+      {% if project.year %}<span class="og-chip og-chip--ghost">{{ project.year }}</span>{% endif %}
+      {% if project.award %}<span class="og-chip og-chip--accent">★ {{ t(project.award) }}</span>{% endif %}
+    </div>
+  </div>
+  <figure class="og-arch og-arch--lg og-reveal">
+    <img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}"{% if project.coverPosition %} style="object-position:{{ project.coverPosition }}"{% endif %}>
+  </figure>
+</section>
+
+<section class="og-p-story og-reveal">
+  <div data-locale="fr">{% for para in project.description.fr %}<p>{{ para }}</p>{% endfor %}</div>
+  <div data-locale="en">{% for para in project.description.en %}<p>{{ para }}</p>{% endfor %}</div>
+</section>
+
+<div class="og-p-gallery">
+  {% for item in imgs %}
+  <figure class="og-shot{% if item.layout == 'wide' %} og-shot--wide{% endif %} og-reveal">
+    <img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy">
+    <figcaption>{{ t(item.label) if item.label else t(item.alt) }}</figcaption>
+  </figure>
+  {% endfor %}
+</div>
+
+<a class="og-next og-reveal" href="{{ ('/versions/organique/projects/' + next.slug + '/') | url }}">
+  <span class="og-next-img"><img src="{{ next.cover | url }}" alt="" loading="lazy"{% if next.coverPosition %} style="object-position:{{ next.coverPosition }}"{% endif %}></span>
+  <span><span class="og-eyebrow">{{ tt("Projet suivant", "Next project") }}</span><span class="og-next-title">{{ t(next.name) }} →</span></span>
+</a>
+{% endblock %}

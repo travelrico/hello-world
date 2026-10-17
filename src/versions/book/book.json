@@ -1,0 +1,4 @@
+{
+  "version": { "id": "book" },
+  "eleventyExcludeFromCollections": true
+}

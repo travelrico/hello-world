@@ -1,0 +1,44 @@
+---
+permalink: /versions/organique/
+---
+{% extends "src/versions/organique/_parts/base.njk" %}
+{% block title %}Organique — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set first = projects[0] %}
+
+<section class="og-hero">
+  <div class="og-hero-text og-reveal">
+    <p class="og-eyebrow">{{ tt("Directeur artistique senior & motion designer · Paris", "Senior art director & motion designer · Paris") }}</p>
+    <h1 class="og-h1">{{ tt("Campagnes et films d'animation pour la santé animale.", "Campaigns and animated films for animal health.") }}</h1>
+    <a class="og-btn" href="#projets">{{ tt("Voir les projets", "See the work") }} <span aria-hidden="true">↓</span></a>
+  </div>
+  {# Visuel en arche : le premier projet #}
+  <a class="og-arch og-reveal" href="{{ ('/versions/organique/projects/' + first.slug + '/') | url }}">
+    <img src="{{ first.cover | url }}" alt="{{ first.coverAlt.fr }}" data-alt-fr="{{ first.coverAlt.fr }}" data-alt-en="{{ first.coverAlt.en }}"{% if first.coverPosition %} style="object-position:{{ first.coverPosition }}"{% endif %}>
+    <span class="og-chip og-arch-chip">{{ t(first.name) }}</span>
+  </a>
+</section>
+
+<section class="og-section" id="projets">
+  <h2 class="og-h2 og-reveal">{{ tt("Projets", "Work") }} <span class="og-count">{{ projects.length }}</span></h2>
+  <div class="og-cards">
+    {% for p in projects %}
+    <a class="og-card og-reveal" href="{{ ('/versions/organique/projects/' + p.slug + '/') | url }}">
+      <span class="og-card-img"><img src="{{ p.cover | url }}" alt="{{ p.coverAlt.fr }}" data-alt-fr="{{ p.coverAlt.fr }}" data-alt-en="{{ p.coverAlt.en }}" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>
+      <span class="og-card-body">
+        <span class="og-card-title">{{ t(p.name) }}</span>
+        <span class="og-chips"><span class="og-chip">{{ p.client }}</span><span class="og-chip og-chip--ghost">{{ t(p.category) }}</span></span>
+      </span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+{# Les valeurs d'Eric #}
+<section class="og-values og-reveal" aria-label="Valeurs / Values">
+  <span class="og-value">{{ tt("Créativité", "Creativity") }}</span>
+  <span class="og-value">{{ tt("Réactivité", "Responsiveness") }}</span>
+  <span class="og-value">{{ tt("Fiabilité", "Reliability") }}</span>
+</section>
+{% endblock %}

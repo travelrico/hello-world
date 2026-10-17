@@ -1,0 +1,99 @@
+/* Version 6 — Book : le book PDF d'Eric transposé sur le web.
+   Albert Sans, fond crème du book, accent #00a19a (picto), texte FR puis EN grisé,
+   picto et mention verticale fixes, pages paysage. */
+
+:root {
+  --bg: #f2f0ec;
+  --white: #ffffff;
+  --ink: #0f1419;
+  --en: #8a939b;   /* texte anglais grisé, comme dans le book */
+  --muted: #9aa3ab;
+  --accent: #00a19a;
+  --sans: "Albert Sans", system-ui, sans-serif;
+  --left: clamp(64px, 11vw, 160px); /* marge gauche réservée au picto et à la mention verticale */
+}
+
+* { box-sizing: border-box; }
+html:has(body.bk--snap) { scroll-snap-type: y proximity; }
+body.bk { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--sans); }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Picto et mention verticale, fixes comme sur chaque page du book */
+.bk-picto { position: fixed; z-index: 20; top: clamp(20px, 4vw, 48px); left: clamp(18px, 3.6vw, 52px); }
+.bk-picto img { width: clamp(34px, 3.6vw, 52px); height: auto; }
+.bk-side { position: fixed; z-index: 20; top: 50%; left: clamp(22px, 4.6vw, 64px); margin: 0; display: flex; align-items: center; gap: 18px; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); font: 700 9px/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; }
+.bk-side span:first-child { color: var(--muted); font-weight: 500; }
+.bk-side-bar { width: 1px; height: 12px; background: var(--ink); }
+
+/* Typographie du book */
+.bk-title { margin: 0 0 22px; font: 800 clamp(40px, 4.6vw, 72px)/1 var(--sans); letter-spacing: -.02em; text-transform: uppercase; }
+.bk-sub { margin: 0 0 14px; font: 700 13px/1.4 var(--sans); text-transform: uppercase; letter-spacing: .02em; }
+.bk-fr { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
+.bk-en { color: var(--en); }
+p.bk-en { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
+.bk-dash { display: block; width: 14px; height: 2px; margin: 10px 0 24px; background: var(--ink); }
+.bk-award { font-weight: 700; }
+
+/* — Pages paysage (accueil) — */
+.bk-page { min-height: 100svh; scroll-snap-align: start; padding: clamp(80px, 9vh, 120px) clamp(20px, 4vw, 64px) clamp(60px, 8vh, 100px) var(--left); display: grid; align-items: center; }
+.bk-col { max-width: 420px; }
+
+.bk-cover { place-items: center; position: relative; }
+/* Nom à droite du picto fixe, comme la couverture du book */
+.bk-cover-name { position: absolute; top: clamp(20px, 4vw, 48px); left: var(--left); margin: 0; font: 700 clamp(18px, 1.9vw, 28px)/clamp(24px, 2.4vw, 35px) var(--sans); text-transform: uppercase; letter-spacing: -.01em; }
+.bk-cover-box { margin: 0; padding: clamp(28px, 4vw, 56px) clamp(40px, 6vw, 96px); border-radius: 10px; background: #1e1e1e; color: var(--bg); font: 800 clamp(48px, 7vw, 110px)/1 var(--sans); text-transform: uppercase; letter-spacing: .01em; }
+.bk-cover-hint { position: absolute; bottom: 70px; margin: 0; color: var(--muted); }
+
+.bk-about { grid-template-columns: minmax(0, 420px) 1fr; gap: clamp(28px, 6vw, 110px); }
+.bk-toc { list-style: none; margin: 0; padding: 0; align-self: center; display: grid; gap: 4px; }
+.bk-toc a { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid #dcd8d1; font: 700 clamp(16px, 1.6vw, 22px)/1.2 var(--sans); text-decoration: none; text-transform: uppercase; }
+.bk-toc a span { color: var(--accent); font-weight: 800; min-width: 2.4em; }
+.bk-toc a:hover { color: var(--accent); }
+
+.bk-project { grid-template-columns: minmax(0, 420px) 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
+.bk-link { display: inline-block; margin-top: 8px; font: 700 13px/1 var(--sans); text-transform: uppercase; text-decoration: none; padding: 10px 14px; border-radius: 999px; background: #1e1e1e; color: var(--bg); }
+.bk-link:hover { background: var(--accent); color: var(--ink); }
+
+/* Mosaïque : un grand visuel + trois vignettes, sur fond blanc comme les planches du book */
+.bk-mosaic { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-self: center; text-decoration: none; }
+.bk-mosaic span { overflow: hidden; background: var(--white); }
+.bk-mosaic-main { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
+.bk-mosaic-thumb { aspect-ratio: 16 / 10; }
+.bk-mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease; }
+.bk-mosaic:hover img { transform: scale(1.03); }
+
+.bk-contact a { color: var(--accent); }
+
+/* — Page projet — */
+.bk-spread { display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: clamp(28px, 5vw, 80px); padding: clamp(80px, 9vh, 120px) clamp(20px, 4vw, 64px) 60px var(--left); }
+.bk-col--sticky { position: sticky; top: 90px; align-self: start; }
+.bk-back { display: inline-block; margin-bottom: 26px; font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .1em; text-decoration: none; color: var(--muted); }
+.bk-back:hover { color: var(--accent); }
+.bk-plates { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
+.bk-plate { margin: 0; background: var(--white); }
+.bk-plate--wide { grid-column: 1 / -1; }
+.bk-plate img { width: 100%; height: auto; }
+
+.bk-next { display: grid; gap: 6px; padding: 48px clamp(20px, 4vw, 64px) 100px var(--left); border-top: 1px solid #dcd8d1; text-decoration: none; }
+.bk-next .bk-title { margin: 0; font-size: clamp(28px, 3.4vw, 52px); }
+.bk-next:hover .bk-title { color: var(--accent); }
+
+/* — Mobile : les pages s'empilent, la mention verticale disparaît — */
+@media (max-width: 860px) {
+  :root { --left: 20px; }
+  .bk-side { display: none; }
+  .bk-picto { position: absolute; }
+  .bk-page { min-height: 0; padding-top: 96px; padding-bottom: 56px; }
+  .bk-cover { min-height: 80svh; }
+  .bk-cover-name { left: 66px; top: 26px; }
+  .bk-about, .bk-project, .bk-spread { grid-template-columns: 1fr; }
+  .bk-col--sticky { position: static; }
+  .bk-mosaic { order: -1; }
+  .bk-plates { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.bk--snap) { scroll-snap-type: none; }
+  * { transition: none !important; }
+}

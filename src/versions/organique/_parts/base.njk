@@ -1,0 +1,33 @@
+{# Version 5 — Organique : squelette (navigation en pilule + contact arrondi) #}
+{% extends "src/versions/_commun/base.njk" %}
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/versions/organique/style.css' | url }}">
+  <script src="{{ '/versions/organique/script.js' | url }}" defer></script>
+{% endblock %}
+{% block bodyClass %}og{% endblock %}
+{% block body %}
+{% from "macros.njk" import t, tt %}
+<header class="og-head">
+  <nav class="og-pill" aria-label="Navigation">
+    <a class="og-brand" href="{{ '/versions/organique/' | url }}"><img src="{{ '/assets/images/logo_picto_01.svg' | url }}" alt="" width="26" height="20"><span>Eric Van Hees</span></a>
+    <a class="og-hide-s" href="{{ '/versions/organique/#projets' | url }}">{{ tt("Projets", "Work") }}</a>
+    <a class="og-hide-s" href="#contact">Contact</a>
+    <span class="og-lang" role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button><button type="button" data-set-locale="en">EN</button></span>
+  </nav>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="og-foot" id="contact">
+  <div class="og-foot-card">
+    <p class="og-eyebrow">Contact</p>
+    <a class="og-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <p class="og-foot-meta">{{ t(site.location) }} · {{ site.footer.copyright }}</p>
+  </div>
+</footer>
+{% endblock %}
