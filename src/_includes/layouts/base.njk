@@ -3,22 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f3f1ed">
-  <meta name="description" content="Portfolio d’Eric Van Hees, Directeur Artistique Senior et Motion Designer à Paris. Campagnes, identités visuelles et motion design en santé animale.">
-  <title>{{ title or "Eric Van Hees — Directeur Artistique" }}</title>
-  {% if robots %}<meta name="robots" content="{{ robots }}">{% endif %}
-  <link rel="icon" href="{{ '/assets/images/logo-picto.svg' | url }}" type="image/svg+xml">
+  <meta name="theme-color" content="#f3f2f2">
+  <meta name="description" content="Portfolio d’Eric Van Hees, directeur artistique senior et motion designer à Paris. Campagnes et films d’animation pour la santé animale.">
+  <title>{{ title or "Eric Van Hees — Directeur artistique & motion designer" }}</title>
+  <link rel="icon" href="{{ '/assets/images/logo_picto_01.svg' | url }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | url }}">
+  {# Appliqué avant l'affichage : langue mémorisée + fin du volet de transition #}
+  <script>
+    try {
+      var l = localStorage.getItem("evh-locale");
+      if (l === "en" || l === "fr") document.documentElement.lang = l;
+      if (sessionStorage.getItem("evh-wipe")) { sessionStorage.removeItem("evh-wipe"); document.documentElement.classList.add("wipe-in"); }
+    } catch (e) {}
+  </script>
   <script src="{{ '/assets/js/site.js' | url }}" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Aller au contenu</a>
   {% include "partials/header.njk" %}
-  {# Mention verticale reprise du book, visible sur grand écran uniquement #}
-  <p class="side-mention" aria-hidden="true"><span>Artistic director</span><span class="side-mention-bar"></span><span>Directeur artistique</span></p>
-  {{ content | safe }}
+  <main id="main">
+    {{ content | safe }}
+  </main>
   {% include "partials/footer.njk" %}
 </body>
 </html>

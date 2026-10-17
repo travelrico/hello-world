@@ -1,0 +1,44 @@
+---
+layout: layouts/base.njk
+permalink: /projets/
+title: "Projets — Eric Van Hees"
+active: projects
+---
+{% from "macros.njk" import t, tt %}
+<section class="pad index-head">
+  <h1 class="display display--index" data-reveal-group>
+    <span class="reveal-line index-title">
+      <span data-reveal>{{ tt("Projets", "Projects") }}</span>
+      <span data-reveal class="count" data-count>{{ ("0" + projects.length) if projects.length < 10 else projects.length }}</span>
+    </span>
+  </h1>
+  <div class="filters" role="group" aria-label="Filtrer / Filter">
+    <button type="button" data-filter="all" aria-pressed="true">{{ tt("Tous", "All") }}</button>
+    <button type="button" data-filter="campagne" aria-pressed="false">{{ tt("Campagne", "Campaign") }}</button>
+    <button type="button" data-filter="identite" aria-pressed="false">{{ tt("Identité", "Identity") }}</button>
+    <button type="button" data-filter="evenement" aria-pressed="false">{{ tt("Événement", "Event") }}</button>
+  </div>
+</section>
+
+<div class="rule" data-rule></div>
+<div class="index-cols label" aria-hidden="true">
+  <span>N°</span><span>{{ tt("Visuel", "Visual") }}</span><span>{{ tt("Projet", "Project") }}</span><span>Client</span><span>Discipline</span><span>↗</span>
+</div>
+<div class="rule"></div>
+
+<div class="index-list" role="list">
+  {% for p in projects %}
+  <a class="index-row" role="listitem" href="{{ ('/projects/' + p.slug + '/') | url }}" data-tags="{{ p.tags | join(' ') }}">
+    <span class="index-num">{{ p.number }}</span>
+    <div class="media media--3-2 index-thumb">
+      <img src="{{ p.cover | url }}" alt="{{ p.coverAlt.fr }}" data-alt-fr="{{ p.coverAlt.fr }}" data-alt-en="{{ p.coverAlt.en }}" loading="lazy"{% if p.coverPosition %} style="object-position: {{ p.coverPosition }}"{% endif %}>
+    </div>
+    <span class="index-name">{{ t(p.name) }}</span>
+    <span class="index-client">{{ p.client }}</span>
+    <span class="index-cat">{{ t(p.category) }}</span>
+    <span class="index-arrow" aria-hidden="true">↗</span>
+  </a>
+  {% endfor %}
+  <p class="index-empty pad" data-empty hidden>{{ tt("Aucun projet dans cette catégorie.", "No project in this category.") }}</p>
+</div>
+<div class="spacer"></div>

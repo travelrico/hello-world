@@ -1,4 +1,10 @@
+{% from "macros.njk" import t %}
 <footer class="site-footer">
-  <div class="footer-top"><a class="brand footer-brand" href="{{ '/' | url }}"><img src="{{ '/assets/images/logo-evh-light.svg' | url }}" width="1208" height="104" alt="Eric Van Hees — accueil / home" /></a><p><span data-locale="fr">Créativité.<br>Réactivité.<br>Fiabilité.</span><span data-locale="en" hidden>Creativity.<br>Responsiveness.<br>Reliability.</span></p><a class="back-top" href="#top"><span data-locale="fr">Retour en haut ↑</span><span data-locale="en" hidden>Back to top ↑</span></a></div>
-  <div class="footer-bottom"><span>© 2026 Eric Van Hees</span><span><span data-locale="fr">Directeur Artistique · Paris</span><span data-locale="en" hidden>Art Director · Paris</span></span><a href="mailto:{{ site.email }}">{{ site.email }}</a></div>
+  <div class="rule" data-rule></div>
+  <div class="footer-grid">
+    <span>{{ site.footer.copyright }}</span>
+    <span>{{ t(site.footer.note) }}</span>
+    <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+    <a href="#top" data-to-top>{{ t(site.footer.back) }}</a>
+  </div>
 </footer>

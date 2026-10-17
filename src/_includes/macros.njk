@@ -1,0 +1,4 @@
+{# t(v) : affiche un texte bilingue { fr, en } ; un texte simple est affiché tel quel #}
+{% macro t(v) %}{% if v and v.fr is defined %}<span data-locale="fr">{{ v.fr }}</span><span data-locale="en">{{ v.en or v.fr }}</span>{% else %}{{ v }}{% endif %}{% endmacro %}
+{# tt(fr, en) : texte bilingue écrit directement dans le gabarit #}
+{% macro tt(fr, en) %}<span data-locale="fr">{{ fr }}</span><span data-locale="en">{{ en }}</span>{% endmacro %}

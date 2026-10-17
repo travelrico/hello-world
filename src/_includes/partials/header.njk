@@ -1,19 +1,56 @@
-<a class="skip-link" href="#main-content"><span data-locale="fr">Aller au contenu</span><span data-locale="en" hidden>Skip to content</span></a>
+{% from "macros.njk" import t, tt %}
 <header class="site-header" id="top">
-  <a class="brand" href="{{ '/' | url }}">
-    <img src="{{ '/assets/images/logo-evh.svg' | url }}" width="1208" height="104" alt="Eric Van Hees — accueil / home" />
-  </a>
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
-    <span data-locale="fr">Menu</span><span data-locale="en" hidden>Menu</span>
-  </button>
-  <nav class="primary-nav" id="primary-nav" aria-label="Navigation principale">
-    <a href="{{ '/#projects' | url }}"><span data-locale="fr">Projets</span><span data-locale="en" hidden>Projects</span><span class="nav-index">(01)</span></a>
-    <a href="{{ '/#about' | url }}"><span data-locale="fr">À propos</span><span data-locale="en" hidden>About</span><span class="nav-index">(02)</span></a>
-    <a href="{{ '/#contact' | url }}"><span data-locale="fr">Contact</span><span data-locale="en" hidden>Contact</span><span class="nav-index">(03)</span></a>
-  </nav>
-  <div class="language-switch" role="group" aria-label="Language / Langue">
-    <button type="button" data-set-locale="fr" aria-pressed="true" lang="fr">FR</button>
-    <span aria-hidden="true">/</span>
-    <button type="button" data-set-locale="en" aria-pressed="false" lang="en">EN</button>
+  {# Ordinateur et tablette #}
+  <div class="nav-desk">
+    <a class="brand" href="{{ '/' | url }}" aria-label="Eric Van Hees — accueil">
+      <img src="{{ '/assets/images/logo_picto_name_01.svg' | url }}" alt="Eric Van Hees" height="40">
+    </a>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="{{ '/projets/' | url }}"{% if active == 'projects' %} aria-current="page"{% endif %}>01 {{ t(site.nav.projects) }}</a>
+      <a href="{{ '/a-propos/' | url }}"{% if active == 'about' %} aria-current="page"{% endif %}>02 {{ t(site.nav.about) }}</a>
+      <a href="{{ '/contact/' | url }}"{% if active == 'contact' %} aria-current="page"{% endif %}>03 {{ t(site.nav.contact) }}</a>
+    </nav>
+    <div class="nav-right">
+      {% if backToIndex %}<a href="{{ '/projets/' | url }}">← Index</a>{% else %}<span>{{ t(site.location) }}</span>{% endif %}
+      <div class="lang" role="group" aria-label="Langue / Language">
+        <button type="button" data-set-locale="fr">FR</button>
+        <span aria-hidden="true">/</span>
+        <button type="button" data-set-locale="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  {# Mobile #}
+  <div class="nav-mob">
+    <a class="brand" href="{{ '/' | url }}" aria-label="Eric Van Hees — accueil">
+      <img src="{{ '/assets/images/logo_picto_01.svg' | url }}" alt="Eric Van Hees" height="32">
+    </a>
+    <button type="button" class="box-btn" data-menu-open aria-expanded="false" aria-controls="menu">
+      <span>Menu</span><span aria-hidden="true">+</span>
+    </button>
+  </div>
+  <div class="rule" data-rule></div>
+
+  {# Menu plein écran (mobile) #}
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu-top">
+      <span class="label">Eric Van Hees</span>
+      <button type="button" class="box-btn box-btn--light" data-menu-close>
+        <span>{{ tt("Fermer", "Close") }}</span><span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="rule rule--light"></div>
+    <nav class="menu-links" aria-label="Navigation principale">
+      <a href="{{ '/projets/' | url }}"><span class="menu-num">01</span>{{ t(site.nav.projects) }}</a>
+      <a href="{{ '/a-propos/' | url }}"><span class="menu-num">02</span>{{ t(site.nav.about) }}</a>
+      <a href="{{ '/contact/' | url }}"><span class="menu-num">03</span>{{ t(site.nav.contact) }}</a>
+    </nav>
+    <div class="menu-bottom">
+      <span>{{ t(site.location) }}</span>
+      <div class="lang lang--menu" role="group" aria-label="Langue / Language">
+        <button type="button" data-set-locale="fr">FR</button>
+        <button type="button" data-set-locale="en">EN</button>
+      </div>
+    </div>
   </div>
 </header>

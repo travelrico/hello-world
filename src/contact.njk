@@ -1,0 +1,56 @@
+---
+layout: layouts/base.njk
+permalink: /contact/
+title: "Contact — Eric Van Hees"
+active: contact
+---
+{% from "macros.njk" import t, tt %}
+<div class="contact">
+  <section class="contact-poster pad">
+    <h1 class="display display--contact" data-reveal-group>
+      <span class="reveal-line"><span data-reveal>{{ tt("Un brief ?", "A brief?") }}</span></span>
+      <span class="reveal-line"><span data-reveal>{{ tt("Parlons-en.", "Let's talk.") }}</span></span>
+    </h1>
+    <div>
+      <div class="rule rule--light" data-rule></div>
+      <a class="contact-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <p class="contact-tagline">{{ tt("Paris / France — campagnes, films d'animation, identités.", "Paris / France — campaigns, animated films, identities.") }}</p>
+    </div>
+  </section>
+
+  <section class="contact-form-wrap pad">
+    {# Site statique : le formulaire ouvre la messagerie du visiteur avec le message pré-rempli #}
+    <form class="contact-form" data-contact-form data-email="{{ site.email }}" novalidate>
+      <div class="field">
+        <label for="c-name">{{ tt("Nom", "Name") }}</label>
+        <input id="c-name" name="name" class="input" autocomplete="name" data-ph-fr="Prénom Nom" data-ph-en="First Last" placeholder="Prénom Nom">
+      </div>
+      <div class="field">
+        <label for="c-email">Email</label>
+        <input id="c-email" name="email" type="email" class="input" autocomplete="email" placeholder="vous@agence.fr" aria-describedby="c-email-error">
+        <span class="field-error" id="c-email-error" hidden>{{ tt("Indiquez une adresse email valide.", "Please enter a valid email address.") }}</span>
+      </div>
+      <fieldset class="field">
+        <legend>{{ tt("Type de projet", "Project type") }}</legend>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="type" value="Campagne" checked><span>{{ tt("Campagne", "Campaign") }}</span></label>
+          <label class="choice"><input type="radio" name="type" value="Film"><span>Film</span></label>
+          <label class="choice"><input type="radio" name="type" value="Identité"><span>{{ tt("Identité", "Identity") }}</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="c-msg">Message</label>
+        <textarea id="c-msg" name="message" class="input" rows="8" data-ph-fr="Le contexte, la cible, les délais…" data-ph-en="Context, audience, timing…" placeholder="Le contexte, la cible, les délais…"></textarea>
+      </div>
+      <button type="submit" class="send"><span>{{ tt("Envoyer", "Send") }}</span><span aria-hidden="true">↗</span></button>
+    </form>
+
+    <div class="contact-sent" data-contact-sent role="status" hidden>
+      <span class="num">✓ {{ tt("Message prêt", "Message ready") }}</span>
+      <h2>{{ tt("Merci. Votre messagerie s'ouvre.", "Thank you. Your email app is opening.") }}</h2>
+      <p class="lede">{{ tt("Si rien ne s'ouvre, écrivez directement à", "If nothing opens, write directly to") }} <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>
+      <div class="rule"></div>
+      <button type="button" class="box-btn" data-contact-reset>{{ tt("Envoyer un autre message", "Send another message") }}</button>
+    </div>
+  </section>
+</div>

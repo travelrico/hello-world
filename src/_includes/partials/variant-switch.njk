@@ -1,9 +1,0 @@
-{# Sélecteur des variantes de page d'accueil (phase de recherche) #}
-<nav class="variant-switch section-wrap" aria-label="Variantes de mise en page / Layout variants">
-  <p class="eyebrow"><span data-locale="fr">Recherche · Page d’accueil</span><span data-locale="en" hidden>Research · Home page</span></p>
-  <div class="variant-links">
-    <a href="{{ '/variantes/grille/' | url }}"{% if variant == 'A' %} aria-current="page"{% endif %}><span class="variant-letter">A</span><span data-locale="fr">Grille éditoriale</span><span data-locale="en" hidden>Editorial grid</span></a>
-    <a href="{{ '/variantes/index/' | url }}"{% if variant == 'B' %} aria-current="page"{% endif %}><span class="variant-letter">B</span>Index</a>
-    <a href="{{ '/variantes/mosaique/' | url }}"{% if variant == 'C' %} aria-current="page"{% endif %}><span class="variant-letter">C</span><span data-locale="fr">Mosaïque</span><span data-locale="en" hidden>Mosaic</span></a>
-  </div>
-</nav>

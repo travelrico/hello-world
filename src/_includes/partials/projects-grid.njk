@@ -1,9 +1,0 @@
-{# Grille éditoriale des projets (accueil et variante A) #}
-<div class="project-grid">
-  {% for project in projects %}
-  <a class="project-card reveal {{ 'card-featured' if loop.first else '' }}" href="{{ ('/projects/' + project.slug + '/') | url }}">
-    <div class="card-image"><img src="{{ project.cover | url }}"{% if project.coverPosition %} style="object-position:{{ project.coverPosition }}"{% endif %} alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}" loading="lazy"><span class="card-number">{{ project.number }}</span><span class="card-arrow" aria-hidden="true">↗</span></div>
-    <div class="card-meta"><div><h3><span data-locale="fr">{{ project.name | loc('fr') }}</span><span data-locale="en" hidden>{{ project.name | loc('en') }}</span></h3><p>{{ project.client }} · <span data-locale="fr">{{ project.category.fr }}</span><span data-locale="en" hidden>{{ project.category.en }}</span></p></div>{% if project.year %}<span class="card-year">{{ project.year }}</span>{% endif %}</div>
-  </a>
-  {% endfor %}
-</div>

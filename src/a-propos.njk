@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+permalink: /a-propos/
+title: "À propos — Eric Van Hees"
+active: about
+---
+{% from "macros.njk" import t, tt %}
+<section class="grid12 pad about-head">
+  {# Portrait : déposez votre photo dans src/assets/images/portrait.jpg
+     puis remplacez le <span> ci-dessous par :
+     <img src="{{ '/assets/images/portrait.jpg' | url }}" alt="Portrait d'Eric Van Hees"> #}
+  <figure class="media about-portrait">
+    <span class="label">{{ tt("Portrait N&B — à fournir", "B&W portrait — to be supplied") }}</span>
+  </figure>
+  <div class="about-text">
+    <h1 class="display display--l" data-reveal-group>
+      <span data-locale="fr">
+        <span class="reveal-line"><span data-reveal>Vingt ans à faire</span></span>
+        <span class="reveal-line"><span data-reveal>comprendre le vivant.</span></span>
+      </span>
+      <span data-locale="en">
+        <span class="reveal-line"><span data-reveal>Twenty years making</span></span>
+        <span class="reveal-line"><span data-reveal>life understood.</span></span>
+      </span>
+    </h1>
+    <div class="about-paras">
+      <p class="lede">{{ tt("Eric Van Hees est directeur artistique senior et motion designer, basé à Paris. Il conçoit des campagnes publicitaires et des films d'animation, promotionnels ou didactiques, principalement pour la santé animale.", "Eric Van Hees is a senior art director and motion designer based in Paris. He creates advertising campaigns and animated films, promotional or educational, mainly for animal health.") }}</p>
+      <p class="lede">{{ tt("Un sujet technique, un public d'experts, un message qui doit tenir dans la durée : c'est là qu'une direction artistique nette fait la différence.", "A technical subject, an expert audience, a message that has to last: that is where clear art direction makes the difference.") }}</p>
+    </div>
+  </div>
+</section>
+
+<div class="rule" data-rule></div>
+<section class="services" aria-label="Services">
+  <div class="service">
+    <span class="num">01</span>
+    <h2>{{ tt("Direction artistique", "Art direction") }}</h2>
+    <p>{{ tt("Le concept, les principes graphiques, la cohérence sur tous les supports.", "The concept, the graphic principles, consistency across every medium.") }}</p>
+  </div>
+  <div class="service">
+    <span class="num">02</span>
+    <h2>{{ tt("Campagnes publicitaires", "Advertising campaigns") }}</h2>
+    <p>{{ tt("Affiches, annonces presse, déclinaisons digitales et réseaux sociaux.", "Posters, press ads, digital and social media adaptations.") }}</p>
+  </div>
+  <div class="service">
+    <span class="num">03</span>
+    <h2>{{ tt("Films d'animation", "Animated films") }}</h2>
+    <p>{{ tt("Promotionnels ou didactiques : du storyboard au film final.", "Promotional or educational: from storyboard to final film.") }}</p>
+  </div>
+  <div class="service">
+    <span class="num">04</span>
+    <h2>Motion design</h2>
+    <p>{{ tt("Habillages, formats courts, animation de marque.", "Brand packaging, short formats, brand animation.") }}</p>
+  </div>
+</section>
+<div class="rule"></div>
+
+<section class="grid12 pad clients">
+  <h2 class="label label--strong clients-label">{{ tt("Ils m'ont confié leurs messages", "They trusted me with their messages") }}</h2>
+  <ul class="clients-list">
+    {% for c in projects | uniqueClients %}<li>{{ c }}</li>{% endfor %}
+  </ul>
+</section>
