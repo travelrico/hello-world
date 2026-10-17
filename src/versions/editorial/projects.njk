@@ -1,0 +1,52 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/editorial/projects/{{ project.slug }}/"
+compact: true
+---
+{% extends "src/versions/editorial/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Éditorial — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set next = projects | nextProject(project.slug) %}
+<article class="ed-article">
+  <header class="ed-art-head">
+    <p class="ed-kicker"><a href="{{ '/versions/editorial/#sommaire' | url }}">{{ tt("Sommaire", "Contents") }}</a> / N° {{ project.number }} — {{ t(project.category) }}</p>
+    <h1 class="ed-art-title">{{ t(project.name) }}</h1>
+    {% if project.intro %}<p class="ed-dek ed-dek--lg">{{ t(project.intro) }}</p>{% endif %}
+    {# Seules les informations connues sont affichées #}
+    <dl class="ed-facts">
+      <div><dt>Client</dt><dd>{{ project.client }}</dd></div>
+      <div><dt>Discipline</dt><dd>{{ t(project.category) }}</dd></div>
+      {% if project.year %}<div><dt>{{ tt("Année", "Year") }}</dt><dd>{{ project.year }}</dd></div>{% endif %}
+      {% if project.award %}<div><dt>{{ tt("Distinction", "Award") }}</dt><dd>{{ t(project.award) }}</dd></div>{% endif %}
+    </dl>
+  </header>
+
+  <figure class="ed-fig ed-fig--hero">
+    <img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}">
+    <figcaption>Fig. 1 — {{ t(project.coverAlt) }}</figcaption>
+  </figure>
+
+  <div class="ed-body">
+    <div data-locale="fr">{% for para in project.description.fr %}<p>{{ para }}</p>{% endfor %}</div>
+    <div data-locale="en">{% for para in project.description.en %}<p>{{ para }}</p>{% endfor %}</div>
+  </div>
+
+  <div class="ed-gallery">
+    {% for item in project.gallery | withoutCover(project.cover) %}
+    <figure class="ed-fig{% if item.layout == 'wide' %} ed-fig--wide{% endif %}">
+      <img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy">
+      <figcaption>Fig. {{ loop.index + 1 }} — {{ t(item.label) if item.label else t(item.alt) }}</figcaption>
+    </figure>
+    {% endfor %}
+  </div>
+</article>
+
+<a class="ed-next" href="{{ ('/versions/editorial/projects/' + next.slug + '/') | url }}">
+  <span class="ed-kicker">{{ tt("Article suivant", "Next story") }} — N° {{ next.number }}</span>
+  <span class="ed-next-title">{{ t(next.name) }} <span aria-hidden="true">→</span></span>
+</a>
+{% endblock %}

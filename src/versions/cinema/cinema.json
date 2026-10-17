@@ -1,0 +1,4 @@
+{
+  "version": { "id": "cinema" },
+  "eleventyExcludeFromCollections": true
+}

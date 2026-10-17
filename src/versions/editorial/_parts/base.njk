@@ -1,0 +1,41 @@
+{# Version 1 — Éditorial : squelette (manchette + pied de page) #}
+{% extends "src/versions/_commun/base.njk" %}
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/versions/editorial/style.css' | url }}">
+{% endblock %}
+{% block bodyClass %}ed{% endblock %}
+{% block body %}
+{% from "macros.njk" import t, tt %}
+{% set home = '/versions/editorial/' | url %}
+<header class="ed-mast{% if compact %} ed-mast--compact{% endif %}">
+  <div class="ed-strip">
+    <span>{{ tt("Paris — Édition 2026", "Paris — 2026 Edition") }}</span>
+    <span class="ed-strip-mid">{{ tt("Directeur artistique & motion designer", "Art director & motion designer") }}</span>
+    <span class="ed-lang" role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button><button type="button" data-set-locale="en">EN</button></span>
+  </div>
+  <a class="ed-title" href="{{ home }}">Eric Van Hees</a>
+  <nav class="ed-nav" aria-label="Navigation">
+    <a href="{{ home }}#une">{{ tt("À la une", "Cover story") }}</a>
+    <a href="{{ home }}#sommaire">{{ tt("Sommaire", "Contents") }}</a>
+    <a href="{{ home }}#edito">{{ tt("L'éditorial", "Editorial") }}</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="ed-foot" id="contact">
+  <p class="ed-kicker">{{ tt("Écrire à la rédaction", "Write to the editor") }}</p>
+  <a class="ed-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+  <div class="ed-foot-bottom">
+    <span>{{ site.footer.copyright }}</span>
+    <span>{{ t(site.footer.note) }}</span>
+    <span>{{ t(site.location) }}</span>
+  </div>
+</footer>
+{% endblock %}

@@ -1,0 +1,55 @@
+---
+pagination:
+  data: projects
+  size: 1
+  alias: project
+permalink: "/versions/cinema/projects/{{ project.slug }}/"
+---
+{% extends "src/versions/cinema/_parts/base.njk" %}
+{% block title %}{{ project.name | loc('fr') }} — Cinéma — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set shots = project.gallery | withoutCover(project.cover) %}
+{% set next = projects | nextProject(project.slug) %}
+
+{# Plan d'ouverture : la couverture entière, sur fond noir #}
+<section class="cn-title">
+  <img src="{{ project.cover | url }}" alt="{{ project.coverAlt.fr }}" data-alt-fr="{{ project.coverAlt.fr }}" data-alt-en="{{ project.coverAlt.en }}">
+  <div class="cn-title-text">
+    <p class="cn-mono">SC.{{ project.number }} — {{ t(project.category) }}</p>
+    <h1 class="cn-title-name">{{ t(project.name) }}</h1>
+  </div>
+</section>
+
+{# Synopsis + fiche technique (seules les informations connues) #}
+<section class="cn-synopsis">
+  <div>
+    <p class="cn-mono">Synopsis</p>
+    {% if project.intro %}<p class="cn-logline">{{ t(project.intro) }}</p>{% endif %}
+    <div class="cn-text" data-locale="fr">{% for para in project.description.fr %}<p>{{ para }}</p>{% endfor %}</div>
+    <div class="cn-text" data-locale="en">{% for para in project.description.en %}<p>{{ para }}</p>{% endfor %}</div>
+  </div>
+  <dl class="cn-sheet">
+    <div><dt class="cn-mono">Client</dt><dd>{{ project.client }}</dd></div>
+    <div><dt class="cn-mono">Discipline</dt><dd>{{ t(project.category) }}</dd></div>
+    {% if project.year %}<div><dt class="cn-mono">{{ tt("Année", "Year") }}</dt><dd>{{ project.year }}</dd></div>{% endif %}
+    {% if project.award %}<div><dt class="cn-mono">{{ tt("Distinction", "Award") }}</dt><dd>★ {{ t(project.award) }}</dd></div>{% endif %}
+    <div><dt class="cn-mono">{{ tt("Plans", "Shots") }}</dt><dd>{{ shots.length + 1 }}</dd></div>
+  </dl>
+</section>
+
+{# Les plans : chaque visuel entier, sous-titré #}
+{% for item in shots %}
+<figure class="cn-frame">
+  <p class="cn-mono cn-frame-num">{{ tt("Plan", "Shot") }} {{ "0" if loop.index + 1 < 10 }}{{ loop.index + 1 }} / {{ "0" if shots.length + 1 < 10 }}{{ shots.length + 1 }}</p>
+  <img src="{{ item.src | url }}" alt="{{ item.alt.fr }}" data-alt-fr="{{ item.alt.fr }}" data-alt-en="{{ item.alt.en }}" loading="lazy">
+  <figcaption class="cn-subtitle">{{ t(item.label) if item.label else t(item.alt) }}</figcaption>
+</figure>
+{% endfor %}
+
+<a class="cn-next" href="{{ ('/versions/cinema/projects/' + next.slug + '/') | url }}">
+  <img src="{{ next.cover | url }}" alt="" loading="lazy"{% if next.coverPosition %} style="object-position:{{ next.coverPosition }}"{% endif %}>
+  <span class="cn-mono">{{ tt("Séquence suivante", "Next sequence") }} — SC.{{ next.number }}</span>
+  <span class="cn-next-title">{{ t(next.name) }} →</span>
+</a>
+{% endblock %}

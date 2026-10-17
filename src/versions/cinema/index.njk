@@ -1,0 +1,35 @@
+---
+permalink: /versions/cinema/
+snap: true
+---
+{% extends "src/versions/cinema/_parts/base.njk" %}
+{% block title %}Cinéma — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+
+{# Carton d'ouverture #}
+<section class="cn-scene cn-opening" data-scene="00">
+  <p class="cn-mono">{{ tt("Directeur artistique senior & motion designer · Paris", "Senior art director & motion designer · Paris") }}</p>
+  <h1 class="cn-opening-title">Eric<br>Van Hees</h1>
+  <p class="cn-mono">{{ tt("Sélection", "Selection") }} 2026 — {{ "0" if projects.length < 10 }}{{ projects.length }} {{ tt("séquences", "sequences") }}</p>
+  <a class="cn-mono cn-scroll" href="#sc-01">↓ {{ tt("Défiler", "Scroll") }}</a>
+</section>
+
+{# Une scène plein écran par projet #}
+{% for p in projects %}
+<section class="cn-scene cn-shot" id="sc-{{ p.number }}" data-scene="{{ p.number }}">
+  <img class="cn-shot-img" src="{{ p.cover | url }}" alt="{{ p.coverAlt.fr }}" data-alt-fr="{{ p.coverAlt.fr }}" data-alt-en="{{ p.coverAlt.en }}"{% if not loop.first %} loading="lazy"{% endif %}{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}>
+  <div class="cn-shot-top cn-mono"><span>SC.{{ p.number }} — 00:0{{ loop.index }}:00:00</span><span>{{ t(p.category) }}</span></div>
+  <a class="cn-shot-caption" href="{{ ('/versions/cinema/projects/' + p.slug + '/') | url }}">
+    <span class="cn-shot-title">{{ t(p.name) }}</span>
+    <span class="cn-mono">{{ p.client }}{% if p.year %} · {{ p.year }}{% endif %}{% if p.award %} · ★ {{ t(p.award) }}{% endif %}</span>
+    <span class="cn-mono cn-play">▶ {{ tt("Voir la séquence", "Watch the sequence") }}</span>
+  </a>
+</section>
+{% endfor %}
+
+{# Repères de scènes (ordinateur) #}
+<nav class="cn-index" aria-label="Scènes / Scenes">
+  {% for p in projects %}<a href="#sc-{{ p.number }}" data-scene-link="{{ p.number }}"><span class="cn-mono">{{ p.number }}</span></a>{% endfor %}
+</nav>
+{% endblock %}

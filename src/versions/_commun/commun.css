@@ -1,0 +1,23 @@
+/* Règles communes à toutes les versions d'exploration */
+
+/* Langue : seul le texte de la langue active est affiché */
+html:not([lang="en"]) [data-locale="en"],
+html[lang="en"] [data-locale="fr"] { display: none !important; }
+[hidden] { display: none !important; }
+
+.skip-link { position: fixed; z-index: 10000; top: 10px; left: 10px; padding: 10px 14px; background: #000; color: #fff; transform: translateY(-160%); }
+.skip-link:focus { transform: none; }
+
+/* Barre de navigation entre versions (neutre, en bas de l'écran) */
+.v-barre {
+  position: fixed; z-index: 9000; left: 50%; bottom: 14px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 2px; max-width: calc(100vw - 24px); overflow-x: auto;
+  padding: 4px; border-radius: 999px; background: rgba(20, 20, 20, .88); backdrop-filter: blur(8px);
+  font: 500 11px/1 system-ui, sans-serif; letter-spacing: .02em; box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+}
+.v-barre a { color: #eee; text-decoration: none; padding: 8px 11px; border-radius: 999px; white-space: nowrap; }
+.v-barre a:hover { background: rgba(255, 255, 255, .12); }
+.v-barre a[aria-current="page"] { background: #fff; color: #111; }
+.v-barre-titre { opacity: .6; }
+.v-barre a:focus-visible { outline: 2px solid #fff; outline-offset: 1px; }
+@media (max-width: 700px) { .v-barre-nom { display: none; } .v-barre a[aria-current="page"] .v-barre-nom { display: inline; } }

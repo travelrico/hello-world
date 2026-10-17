@@ -1,0 +1,59 @@
+---
+permalink: /versions/editorial/
+---
+{% extends "src/versions/editorial/_parts/base.njk" %}
+{% block title %}Éditorial — Eric Van Hees{% endblock %}
+{% block content %}
+{% from "macros.njk" import t, tt %}
+{% set une = projects[0] %}
+
+{# À la une : le premier projet en couverture #}
+<section class="ed-une" id="une">
+  <div class="ed-une-text">
+    <p class="ed-kicker">{{ tt("À la une", "Cover story") }} — {{ t(une.category) }}</p>
+    <h1 class="ed-une-title">{{ t(une.name) }}</h1>
+    {% if une.intro %}<p class="ed-dek">{{ t(une.intro) }}</p>{% endif %}
+    <p class="ed-byline">{{ une.client }}{% if une.award %} · {{ t(une.award) }}{% endif %}</p>
+    <a class="ed-more" href="{{ ('/versions/editorial/projects/' + une.slug + '/') | url }}">{{ tt("Lire l'étude", "Read the story") }} <span aria-hidden="true">→</span></a>
+  </div>
+  <a class="ed-une-img" href="{{ ('/versions/editorial/projects/' + une.slug + '/') | url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ une.cover | url }}" alt=""{% if une.coverPosition %} style="object-position:{{ une.coverPosition }}"{% endif %}>
+  </a>
+</section>
+
+{# Sommaire numéroté des autres projets #}
+<section class="ed-section" id="sommaire">
+  <div class="ed-section-head">
+    <h2 class="ed-h2">{{ tt("Sommaire", "Contents") }}</h2>
+    <p class="ed-kicker">{{ projects.length - 1 }} {{ tt("études de cas", "case studies") }}</p>
+  </div>
+  <ol class="ed-toc">
+    {% for p in projects %}{% if not loop.first %}
+    <li>
+      <a class="ed-toc-item" href="{{ ('/versions/editorial/projects/' + p.slug + '/') | url }}">
+        <span class="ed-toc-num">{{ p.number }}</span>
+        <span class="ed-toc-text">
+          <span class="ed-kicker">{{ t(p.category) }}</span>
+          <span class="ed-toc-title">{{ t(p.name) }}</span>
+          {% if p.intro %}<span class="ed-toc-dek">{{ t(p.intro) }}</span>{% endif %}
+          <span class="ed-byline">{{ p.client }}{% if p.year %} · {{ p.year }}{% endif %}</span>
+        </span>
+        <span class="ed-toc-img"><img src="{{ p.cover | url }}" alt="" loading="lazy"{% if p.coverPosition %} style="object-position:{{ p.coverPosition }}"{% endif %}></span>
+      </a>
+    </li>
+    {% endif %}{% endfor %}
+  </ol>
+</section>
+
+{# L'éditorial : texte « À propos » du book d'Eric, mot pour mot #}
+<section class="ed-section ed-edito" id="edito">
+  <p class="ed-kicker">{{ tt("L'éditorial", "Editorial") }}</p>
+  <blockquote class="ed-quote">
+    <p>{{ tt("« …la conviction que la forme ne vaut que si elle est juste. »", "“…good design is about more than aesthetics — it's about getting it right.”") }}</p>
+  </blockquote>
+  <div class="ed-edito-text">
+    <p>{{ tt("Directeur Artistique Senior et Motion Designer, j'accompagne les projets de la première idée à leur réalisation. Concepts, campagnes, identités visuelles ou contenus animés : je cherche des solutions créatives, claires et efficaces. Mon approche repose sur une culture visuelle solide, une exigence constante, et la conviction que la forme ne vaut que si elle est juste.", "Senior Art Director and Motion Designer, I work on projects from the initial idea through to final delivery. Concepts, campaigns, visual identities or motion content: I focus on creating clear, effective and compelling creative solutions. My approach is built on a strong visual culture, consistently high standards, and the belief that good design is about more than aesthetics — it's about getting it right.") }}</p>
+    <p class="ed-sign">Eric Van Hees</p>
+  </div>
+</section>
+{% endblock %}

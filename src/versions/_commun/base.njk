@@ -1,0 +1,23 @@
+{# Squelette commun à toutes les versions d'exploration.
+   Chaque version l'étend avec {% extends %} et remplit les blocs head (polices, style) et body. #}
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {# Versions de recherche : pas de référencement #}
+  <meta name="robots" content="noindex">
+  <title>{% block title %}Eric Van Hees{% endblock %}</title>
+  <link rel="icon" href="{{ '/assets/images/logo_picto_01.svg' | url }}" type="image/svg+xml">
+  {# Langue mémorisée, appliquée avant l'affichage (même mémoire que le site principal) #}
+  <script>try { var l = localStorage.getItem("evh-locale"); if (l === "en" || l === "fr") document.documentElement.lang = l; } catch (e) {}</script>
+  <link rel="stylesheet" href="{{ '/versions/_commun/commun.css' | url }}">
+  {% block head %}{% endblock %}
+  <script src="{{ '/versions/_commun/commun.js' | url }}" defer></script>
+</head>
+<body class="{% block bodyClass %}{% endblock %}">
+  <a class="skip-link" href="#main"><span data-locale="fr">Aller au contenu</span><span data-locale="en">Skip to content</span></a>
+  {% block body %}{% endblock %}
+  {% include "src/versions/_commun/barre.njk" %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+---
+permalink: /versions/
+eleventyExcludeFromCollections: true
+---
+{% extends "src/versions/_commun/base.njk" %}
+{% block title %}Versions d'exploration — Eric Van Hees{% endblock %}
+{% block head %}
+<style>
+  /* Sommaire volontairement neutre, pour ne favoriser aucune direction */
+  body { margin: 0; background: #f4f4f2; color: #161616; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  .s-wrap { max-width: 1100px; margin: 0 auto; padding: 56px 24px 120px; }
+  .s-top { display: flex; justify-content: space-between; align-items: center; gap: 16px; font-size: 13px; }
+  .s-top button { border: 0; background: none; font: inherit; cursor: pointer; color: #888; padding: 4px; }
+  .s-top button[aria-pressed="true"] { color: #161616; font-weight: 700; }
+  h1 { font-size: clamp(34px, 6vw, 64px); line-height: 1; letter-spacing: -.03em; margin: 56px 0 14px; }
+  .s-intro { max-width: 620px; color: #555; margin: 0 0 48px; }
+  .s-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .s-grid li { display: flex; }
+  .s-card { box-sizing: border-box; flex: 1; display: flex; flex-direction: column; gap: 10px; min-height: 190px; padding: 22px; border: 1px solid #d9d9d5; background: #fff; color: inherit; text-decoration: none; transition: border-color .2s, transform .2s; }
+  a.s-card:hover { border-color: #161616; transform: translateY(-2px); }
+  .s-card.is-soon { background: transparent; color: #999; }
+  .s-num { font-size: 13px; color: #888; }
+  .s-name { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+  .s-intent { font-size: 14px; color: #555; flex: 1; }
+  .s-card.is-soon .s-intent { color: #aaa; }
+  .s-state { font-size: 12px; font-weight: 600; }
+  a.s-card:focus-visible { outline: 2px solid #161616; outline-offset: 3px; }
+</style>
+{% endblock %}
+{% block body %}
+<main id="main" class="s-wrap">
+  <div class="s-top">
+    <a href="{{ '/' | url }}" style="color:inherit">← <span data-locale="fr">Site actuel (Modernist)</span><span data-locale="en">Current site (Modernist)</span></a>
+    <div role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button> / <button type="button" data-set-locale="en">EN</button></div>
+  </div>
+  <h1><span data-locale="fr">Versions d'exploration</span><span data-locale="en">Exploration versions</span></h1>
+  <p class="s-intro"><span data-locale="fr">Six directions radicalement différentes, construites avec les mêmes projets. Chacune montre un accueil et les pages projet, sur ordinateur et sur mobile.</span><span data-locale="en">Six radically different directions, built with the same projects. Each shows a home page and the project pages, on desktop and mobile.</span></p>
+  <ul class="s-grid">
+    {% for v in versions %}
+    <li>
+      {% if v.ready %}<a class="s-card" href="{{ ('/versions/' + v.id + '/') | url }}">{% else %}<div class="s-card is-soon">{% endif %}
+        <span class="s-num">{{ v.number }} / {{ versions.length }}</span>
+        <span class="s-name"><span data-locale="fr">{{ v.name.fr }}</span><span data-locale="en">{{ v.name.en }}</span></span>
+        <span class="s-intent"><span data-locale="fr">{{ v.intent.fr }}</span><span data-locale="en">{{ v.intent.en }}</span></span>
+        <span class="s-state">{% if v.ready %}<span data-locale="fr">Voir la version →</span><span data-locale="en">View version →</span>{% else %}<span data-locale="fr">À venir</span><span data-locale="en">Coming soon</span>{% endif %}</span>
+      {% if v.ready %}</a>{% else %}</div>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</main>
+{% endblock %}

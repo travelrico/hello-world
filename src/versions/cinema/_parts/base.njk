@@ -1,0 +1,35 @@
+{# Version 2 — Cinéma : squelette (bandeau fixe + générique de fin) #}
+{% extends "src/versions/_commun/base.njk" %}
+{% block head %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/versions/cinema/style.css' | url }}">
+  <script src="{{ '/versions/cinema/script.js' | url }}" defer></script>
+{% endblock %}
+{% block bodyClass %}cn{% if snap %} cn--snap{% endif %}{% endblock %}
+{% block body %}
+{% from "macros.njk" import t, tt %}
+<header class="cn-bar">
+  <a class="cn-logo" href="{{ '/versions/cinema/' | url }}">EVH<span> — Reel 2026</span></a>
+  <div class="cn-bar-right">
+    <a href="{{ '/versions/cinema/#generique' | url }}">{{ tt("Générique", "Credits") }}</a>
+    <span class="cn-lang" role="group" aria-label="Langue / Language"><button type="button" data-set-locale="fr">FR</button><button type="button" data-set-locale="en">EN</button></span>
+  </div>
+</header>
+
+<main id="main">
+{% block content %}{% endblock %}
+</main>
+
+{# Générique de fin : clients des projets présentés + contact #}
+<footer class="cn-credits" id="generique">
+  <p class="cn-mono">{{ tt("Générique", "Credits") }}</p>
+  <dl class="cn-credits-list">
+    <div><dt class="cn-mono">{{ tt("Direction artistique & motion design", "Art direction & motion design") }}</dt><dd>Eric Van Hees</dd></div>
+    <div><dt class="cn-mono">{{ tt("Avec la confiance de", "With the trust of") }}</dt><dd>{% for c in projects | uniqueClients %}<span>{{ c }}</span>{% endfor %}</dd></div>
+    <div><dt class="cn-mono">Contact</dt><dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>
+  </dl>
+  <p class="cn-mono cn-fin">{{ tt("Fin", "The end") }} · {{ t(site.location) }} · {{ site.footer.copyright }}</p>
+</footer>
+{% endblock %}

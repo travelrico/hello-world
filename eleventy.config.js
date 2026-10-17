@@ -2,6 +2,18 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addWatchTarget("src/assets");
 
+  // Versions d'exploration : chaque dossier src/versions/<nom>/ est autonome.
+  // Les morceaux de gabarit (_parts, _commun) ne sont pas des pages ; le style et le script sont copiés tels quels.
+  eleventyConfig.ignores.add("src/versions/**/_parts/**");
+  eleventyConfig.ignores.add("src/versions/_commun/*.njk");
+  eleventyConfig.addPassthroughCopy("src/versions/**/*.{css,js}");
+  eleventyConfig.addWatchTarget("src/versions");
+
+  // Galerie sans l'image de couverture (déjà affichée en haut des pages projet des versions)
+  eleventyConfig.addFilter("withoutCover", (gallery, cover) =>
+    (gallery || []).filter((item) => item.src !== cover)
+  );
+
   // Projet suivant (boucle sur la liste)
   eleventyConfig.addFilter("nextProject", (all, slug) => {
     const index = all.findIndex((item) => item.slug === slug);

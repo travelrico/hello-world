@@ -12,6 +12,8 @@ Je suis graphiste, pas développeur : **explique tes choix simplement**, sans ja
 - Valeurs à faire ressentir : **créativité, réactivité, fiabilité**.
 
 ## Direction artistique (à respecter strictement)
+> Cette charte s'applique au site principal (racine). Les **versions d'exploration** (`src/versions/`) peuvent s'en écarter librement (typo, couleurs, mise en page) ; les règles de contenu, de langue et d'accessibilité restent valables pour elles.
+
 - Ambiance : minimaliste, actuelle, sobre, sophistication discrète, petits détails élégants.
 - Style « Modernist » (refonte installée le 17/10/2026 à partir d'une maquette validée) : angles droits, filets de 2 px, grille de 12 colonnes.
 - Palette : quasi monochrome (fond `#f3f2f2`, encre `#201e1d`) + **un seul accent `#0f8a5f`**. Ne pas ajouter d'autres couleurs sans me demander.
@@ -45,6 +47,11 @@ Je suis graphiste, pas développeur : **explique tes choix simplement**, sans ja
     - `src/_includes/partials/` : header (menu ordinateur + menu plein écran mobile) et footer.
     - `src/_includes/macros.njk` : raccourcis `t()` et `tt()` pour afficher un texte en FR/EN.
     - `src/assets/` : CSS (`css/site.css`), JS (`js/site.js`), images, vidéo — copiés tels quels dans `_site/assets/`.
+  - `src/versions/` : **versions d'exploration** (pistes de design radicalement différentes, publiées sur `/versions/`, non référencées).
+    - `src/versions/index.njk` : page sommaire ; `src/_data/versions.json` : liste des versions (nom, intention, `ready` = construite ou non).
+    - `src/versions/_commun/` : squelette commun (`base.njk`), barre de navigation entre versions, langue FR/EN.
+    - `src/versions/<nom>/` : une version = un dossier autonome (`index.njk` accueil, `projects.njk` pages projet, `_parts/` squelette, `style.css`, `script.js`, `<nom>.json`). Supprimer une version = supprimer son dossier et sa ligne dans `versions.json`.
+    - Les versions lisent les mêmes données (`src/_data/`) et images (`src/assets/images/`) que le site principal.
   - `_site/` : site généré, **ne jamais modifier à la main** (ignoré par Git, recréé à chaque build).
   - `.github/workflows/pages.yml` : publication automatique sur GitHub Pages à chaque envoi (push) sur `main`. Site en ligne : https://travelrico.github.io/hello-world/
   - Ancien site fait main, non utilisé par Eleventy (conservé pour mémoire) : `index.html`, `style.css`, `script.js`, `images/`, `videos/`, `projects/`, ainsi que `reference/` (archives). Ne pas les modifier ; suppression possible plus tard, sur accord.

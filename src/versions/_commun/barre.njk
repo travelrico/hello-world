@@ -1,0 +1,6 @@
+{# Petite barre fixe pour passer d'une version à l'autre pendant la phase de recherche #}
+<nav class="v-barre" aria-label="Versions d'exploration / Exploration versions">
+  <a href="{{ '/versions/' | url }}" class="v-barre-titre"><span data-locale="fr">Versions</span><span data-locale="en">Versions</span></a>
+  {% for v in versions %}{% if v.ready %}<a href="{{ ('/versions/' + v.id + '/') | url }}"{% if version and version.id == v.id %} aria-current="page"{% endif %}>{{ v.number }}<span class="v-barre-nom"> <span data-locale="fr">{{ v.name.fr }}</span><span data-locale="en">{{ v.name.en }}</span></span></a>{% endif %}{% endfor %}
+  <a href="{{ '/' | url }}">M<span class="v-barre-nom"> Modernist</span></a>
+</nav>

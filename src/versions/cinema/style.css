@@ -1,0 +1,108 @@
+/* Version 2 — Cinéma : le regard du motion designer.
+   Anton (titres) + DM Mono (repères, timecodes) + Inter (texte), fond noir, un accent ambre. */
+
+:root {
+  --black: #0a0a0a;
+  --white: #ececea;
+  --grey: #9a9a96;
+  --accent: #f2b705; /* ambre « amorce de film » */
+  --display: "Anton", Impact, sans-serif;
+  --mono: "DM Mono", ui-monospace, monospace;
+  --sans: "Inter", system-ui, sans-serif;
+  --pad: clamp(18px, 3.5vw, 48px);
+}
+
+* { box-sizing: border-box; }
+html:has(body.cn--snap) { scroll-snap-type: y proximity; }
+body.cn { margin: 0; background: var(--black); color: var(--white); font: 300 17px/1.6 var(--sans); }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.cn-mono { margin: 0; font: 400 11px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+
+/* — Bandeau fixe — */
+.cn-bar { position: fixed; z-index: 50; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 16px var(--pad); font: 500 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; mix-blend-mode: difference; color: #fff; }
+.cn-logo span { opacity: .6; }
+.cn-bar-right { display: flex; align-items: center; gap: 22px; }
+.cn-lang button { border: 0; background: none; color: inherit; font: inherit; letter-spacing: inherit; opacity: .5; cursor: pointer; padding: 4px; }
+.cn-lang button[aria-pressed="true"] { opacity: 1; }
+
+/* — Scènes plein écran (accueil) — */
+.cn-scene { position: relative; min-height: 100svh; scroll-snap-align: start; overflow: hidden; }
+.cn-opening { display: grid; place-content: center; justify-items: center; gap: 26px; padding: 80px var(--pad); text-align: center; }
+.cn-opening-title { margin: 0; font: 400 clamp(72px, 15vw, 240px)/.86 var(--display); text-transform: uppercase; letter-spacing: .01em; }
+.cn-scroll { color: var(--accent); }
+
+/* Bandes noires haut / bas : format cinéma */
+.cn-shot::before, .cn-shot::after { content: ""; position: absolute; z-index: 2; left: 0; right: 0; height: 9vh; background: var(--black); }
+.cn-shot::before { top: 0; }
+.cn-shot::after { bottom: 0; }
+.cn-shot-img { position: absolute; inset: 9vh 0; width: 100%; height: calc(100% - 18vh); object-fit: cover; transform: scale(1.06); transition: transform 1.6s cubic-bezier(.2, .7, .2, 1); }
+.cn-shot.is-active .cn-shot-img { transform: scale(1); }
+.cn-shot-top { position: absolute; z-index: 3; top: calc(9vh - 26px); left: var(--pad); right: var(--pad); display: flex; justify-content: space-between; }
+.cn-shot-caption { position: absolute; z-index: 3; left: 0; right: 0; bottom: 9vh; display: grid; gap: 10px; padding: 120px var(--pad) 28px; background: linear-gradient(transparent, rgba(0, 0, 0, .78)); }
+.cn-shot-caption .cn-mono { color: #d8d8d4; }
+.cn-shot-title { font: 400 clamp(52px, 9vw, 150px)/.9 var(--display); text-transform: uppercase; }
+.cn-play { color: var(--accent) !important; }
+.cn-shot-caption:hover .cn-shot-title { color: var(--accent); }
+
+/* Repères de scènes */
+.cn-index { position: fixed; z-index: 40; right: var(--pad); top: 50%; transform: translateY(-50%); display: grid; gap: 8px; }
+.cn-index a { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.cn-index a::after { content: ""; width: 14px; height: 2px; background: var(--grey); transition: width .3s, background .3s; }
+.cn-index a.is-active::after { width: 32px; background: var(--accent); }
+.cn-index a.is-active .cn-mono { color: var(--white); }
+.cn-index .cn-mono { color: transparent; transition: color .3s; }
+.cn-index a:hover .cn-mono { color: var(--grey); }
+
+/* — Page projet — */
+.cn-title { position: relative; min-height: 100svh; display: grid; place-items: center; padding: 70px var(--pad) 150px; }
+.cn-title img { max-height: 64svh; width: auto; margin: 0 auto; }
+.cn-title-text { position: absolute; left: var(--pad); right: var(--pad); bottom: 36px; display: grid; gap: 6px; }
+.cn-title-name { margin: 0; font: 400 clamp(48px, 8vw, 128px)/.9 var(--display); text-transform: uppercase; }
+
+.cn-synopsis { display: grid; grid-template-columns: 2fr 1fr; gap: clamp(28px, 6vw, 100px); padding: clamp(56px, 8vw, 120px) var(--pad); border-top: 1px solid #262626; }
+.cn-logline { margin: 14px 0 22px; font: 400 clamp(26px, 3vw, 40px)/1.15 var(--sans); color: var(--white); }
+.cn-text p { margin: 0 0 1em; color: #cfcfcb; max-width: 680px; }
+.cn-sheet { margin: 0; display: grid; gap: 18px; align-content: start; }
+.cn-sheet dd { margin: 4px 0 0; font-size: 15px; font-weight: 400; }
+
+.cn-frame { margin: 0; padding: clamp(40px, 6vw, 90px) var(--pad); border-top: 1px solid #1d1d1d; display: grid; justify-items: center; gap: 18px; }
+.cn-frame-num { justify-self: start; }
+.cn-frame img { max-height: 84svh; width: auto; }
+/* Sous-titres façon cinéma */
+.cn-subtitle { max-width: 760px; text-align: center; font: 400 clamp(16px, 1.6vw, 21px)/1.4 var(--sans); color: var(--accent); }
+
+.cn-next { position: relative; display: grid; gap: 10px; min-height: 60svh; align-content: end; padding: 48px var(--pad); overflow: hidden; }
+.cn-next img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .35; transition: opacity .5s, transform 1.2s; }
+.cn-next:hover img { opacity: .55; transform: scale(1.03); }
+.cn-next > span { position: relative; }
+.cn-next .cn-mono { color: #ddd; }
+.cn-next-title { font: 400 clamp(48px, 8vw, 130px)/.9 var(--display); text-transform: uppercase; }
+
+/* — Générique — */
+.cn-credits { min-height: 100svh; scroll-snap-align: start; display: grid; place-content: center; gap: 48px; padding: 100px var(--pad) 110px; text-align: center; border-top: 1px solid #1d1d1d; }
+.cn-credits-list { margin: 0; display: grid; gap: 40px; }
+.cn-credits-list dd { margin: 10px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 22px; font: 400 clamp(26px, 3.4vw, 46px)/1.1 var(--display); text-transform: uppercase; }
+.cn-credits-list a:hover { color: var(--accent); }
+.cn-fin { color: var(--accent); }
+
+/* — Mobile — */
+@media (max-width: 760px) {
+  .cn-bar-right > a { display: none; }
+  .cn-index { display: none; }
+  .cn-shot::before, .cn-shot::after { height: 6vh; }
+  .cn-shot-img { inset: 6vh 0; height: calc(100% - 12vh); }
+  /* Repère du haut masqué : il entrerait en collision avec le bandeau (infos reprises en bas) */
+  .cn-shot-top { display: none; }
+  .cn-shot-caption { bottom: 6vh; }
+  .cn-synopsis { grid-template-columns: 1fr; }
+  .cn-title { min-height: 0; gap: 22px; padding: 80px var(--pad) 40px; }
+  .cn-title img { max-height: 60svh; }
+  .cn-title-text { position: static; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.cn--snap) { scroll-snap-type: none; }
+  .cn-shot-img { transform: none; transition: none; }
+}
