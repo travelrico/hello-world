@@ -1,15 +1,45 @@
-{# Version 6 — Book : squelette (picto et mention verticale fixes, comme sur chaque page du book PDF).
-   Comme dans le book, le français et l'anglais sont affichés ensemble : pas de sélecteur de langue. #}
+{# Version 6 — Book : squelette.
+   - En-tête fixe (logo picto + nom insécable, navigation), toujours au premier plan.
+   - Mention verticale fixe, comme sur chaque page du book PDF.
+   - Comme dans le book, le français et l'anglais sont affichés ensemble : pas de sélecteur de langue. #}
 {% extends "src/versions/_commun/base.njk" %}
 {% block head %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ '/versions/book/style.css' | url }}">
+  <script src="{{ '/versions/book/script.js' | url }}" defer></script>
 {% endblock %}
-{% block bodyClass %}bk{% if snap %} bk--snap{% endif %}{% endblock %}
+{% block bodyClass %}bk{% endblock %}
 {% block body %}
-<a class="bk-picto" href="{{ '/versions/book/' | url }}" aria-label="Eric Van Hees — accueil / home"><img src="{{ '/assets/images/logo-picto.svg' | url }}" alt="" width="52" height="35"></a>
+{% set home = '/versions/book/' | url %}
+<header class="bk-head">
+  {# Logo : picto + nom, un seul fichier = ensemble insécable #}
+  <a class="bk-logo" href="{{ home }}"><img src="{{ '/assets/images/logo-evh.svg' | url }}" alt="Eric Van Hees — accueil / home" width="1208" height="104"></a>
+
+  <nav class="bk-nav" aria-label="Navigation principale / Main navigation">
+    <a href="{{ home }}#projets"><span>Projets</span><span class="bk-en">Projects</span></a>
+    <a href="{{ home }}#a-propos"><span>À propos</span><span class="bk-en">About</span></a>
+    <a href="{{ home }}#contact"><span>Contact</span><span class="bk-en">Contact</span></a>
+  </nav>
+
+  {# Mobile : bouton menu #}
+  <button class="bk-burger" type="button" aria-expanded="false" aria-controls="bk-menu">
+    <span class="bk-burger-lines" aria-hidden="true"></span>
+    <span class="bk-sr">Menu</span>
+  </button>
+</header>
+
+{# Menu plein écran (mobile) #}
+<div class="bk-menu" id="bk-menu" hidden>
+  <nav aria-label="Menu">
+    <a href="{{ home }}#projets"><span>Projets</span><span class="bk-en">Projects</span></a>
+    <a href="{{ home }}#a-propos"><span>À propos</span><span class="bk-en">About</span></a>
+    <a href="{{ home }}#contact"><span>Contact</span><span class="bk-en">Contact</span></a>
+  </nav>
+  <a class="bk-menu-mail" href="mailto:{{ site.email }}">{{ site.email }}</a>
+</div>
+
 <p class="bk-side" aria-hidden="true"><span>Artistic director</span><span class="bk-side-bar"></span><span>Directeur artistique</span></p>
 
 <main id="main">

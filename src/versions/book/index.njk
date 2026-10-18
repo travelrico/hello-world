@@ -1,20 +1,24 @@
 ---
 permalink: /versions/book/
-snap: true
 ---
 {% extends "src/versions/book/_parts/base.njk" %}
 {% block title %}Book — Eric Van Hees{% endblock %}
 {% block content %}
 
-{# Page 1 : couverture #}
-<section class="bk-page bk-cover">
-  <p class="bk-cover-name">Eric Van Hees</p>
-  <h1 class="bk-cover-box">Portfolio</h1>
-  <p class="bk-cover-hint">↓</p>
+{# Hero : vidéo plein cadre 16:9 (vidéo temporaire, à remplacer par le showreel) #}
+<section class="bk-hero" aria-labelledby="bk-hero-title">
+  <h1 class="bk-sr" id="bk-hero-title">Eric Van Hees — Directeur artistique & motion designer / Art director & motion designer</h1>
+  <div class="bk-hero-frame">
+    <video class="bk-hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ '/assets/images/hero-poster.jpg' | url }}" aria-label="Film d'ouverture / Opening film">
+      <source src="{{ '/assets/video/hero.mp4' | url }}" type="video/mp4">
+    </video>
+    {# Bouton pause : obligatoire pour une vidéo qui démarre seule (accessibilité) #}
+    <button class="bk-hero-toggle" type="button" aria-pressed="false" aria-label="Mettre la vidéo en pause / Pause video"><span aria-hidden="true"></span></button>
+  </div>
 </section>
 
-{# Page 2 : à propos (texte du book, FR puis EN) #}
-<section class="bk-page bk-about">
+{# À propos (texte du book, FR puis EN) #}
+<section class="bk-page bk-about" id="a-propos">
   <div class="bk-col">
     <h2 class="bk-sub">À propos de moi</h2>
     <p class="bk-fr">Directeur Artistique Senior et Motion Designer, j'accompagne les projets de la première idée à leur réalisation. Concepts, campagnes, identités visuelles ou contenus animés : je cherche des solutions créatives, claires et efficaces. Mon approche repose sur une culture visuelle solide, une exigence constante, et la conviction que la forme ne vaut que si elle est juste.</p>
@@ -27,6 +31,7 @@ snap: true
 </section>
 
 {# Une page paysage par projet, mise en page du book : texte à gauche, mosaïque à droite #}
+<div id="projets" class="bk-anchor"></div>
 {% for p in projects %}
 {% set imgs = p.gallery | withoutCover(p.cover) %}
 <section class="bk-page bk-project" id="p-{{ p.slug }}">

@@ -1,6 +1,6 @@
 /* Version 6 — Book : le book PDF d'Eric transposé sur le web.
    Albert Sans, fond crème du book, accent #00a19a (picto), texte FR puis EN grisé,
-   picto et mention verticale fixes, pages paysage. */
+   en-tête fixe (logo insécable + navigation), mention verticale fixe, hero vidéo 16:9. */
 
 :root {
   --bg: #f2f0ec;
@@ -8,26 +8,61 @@
   --ink: #0f1419;
   --en: #8a939b;   /* texte anglais grisé, comme dans le book */
   --muted: #9aa3ab;
+  --line: #dcd8d1;
   --accent: #00a19a;
   --sans: "Albert Sans", system-ui, sans-serif;
-  --left: clamp(64px, 11vw, 160px); /* marge gauche réservée au picto et à la mention verticale */
+  --head: clamp(64px, 9vw, 130px);      /* hauteur de l'en-tête : 130 px sur grand écran, se réduit avec la fenêtre */
+  --side: clamp(18px, 3.6vw, 52px);     /* colonne du logo et de la mention verticale */
+  --left: clamp(64px, 11vw, 160px);     /* début du contenu, comme la marge gauche du book */
+  --right: clamp(20px, 4vw, 64px);
 }
 
 * { box-sizing: border-box; }
-html:has(body.bk--snap) { scroll-snap-type: y proximity; }
+html { scroll-padding-top: var(--head); } /* les ancres (#projets…) arrivent sous l'en-tête */
 body.bk { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--sans); }
-img { display: block; max-width: 100%; }
+body.bk-menu-open { overflow: hidden; }
+img, video { display: block; max-width: 100%; }
 a { color: inherit; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.bk-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-/* Picto et mention verticale, fixes comme sur chaque page du book */
-.bk-picto { position: fixed; z-index: 20; top: clamp(20px, 4vw, 48px); left: clamp(18px, 3.6vw, 52px); }
-.bk-picto img { width: clamp(34px, 3.6vw, 52px); height: auto; }
-.bk-side { position: fixed; z-index: 20; top: 50%; left: clamp(22px, 4.6vw, 64px); margin: 0; display: flex; align-items: center; gap: 18px; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); font: 700 9px/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; }
+/* — En-tête fixe : fond + logo + navigation, toujours au premier plan — */
+.bk-head { position: fixed; z-index: 100; top: 0; left: 0; right: 0; height: var(--head); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--right) 0 var(--side); background: var(--bg); }
+.bk-logo { display: block; flex: none; }
+.bk-logo img { height: clamp(16px, 1.95vw, 28px); width: auto; } /* l'ensemble picto + nom se réduit progressivement */
+.bk-nav { display: flex; gap: clamp(20px, 3.2vw, 52px); }
+.bk-nav a, .bk-menu nav a { position: relative; display: grid; text-decoration: none; text-transform: uppercase; }
+.bk-nav a span:first-child { font: 700 13px/1.2 var(--sans); letter-spacing: .03em; }
+.bk-nav a .bk-en { font: 500 10px/1.4 var(--sans); letter-spacing: .06em; }
+.bk-nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+.bk-nav a:hover::after { transform: scaleX(1); }
+
+.bk-burger { display: none; width: 44px; height: 44px; margin-right: -10px; border: 0; background: none; cursor: pointer; }
+.bk-burger-lines, .bk-burger-lines::before, .bk-burger-lines::after { display: block; width: 24px; height: 2px; margin: 0 auto; background: var(--ink); transition: transform .3s, background .3s; }
+.bk-burger-lines { position: relative; }
+.bk-burger-lines::before, .bk-burger-lines::after { content: ""; position: absolute; left: 0; }
+.bk-burger-lines::before { top: -7px; }
+.bk-burger-lines::after { top: 7px; }
+.bk-burger[aria-expanded="true"] .bk-burger-lines { background: transparent; }
+.bk-burger[aria-expanded="true"] .bk-burger-lines::before { transform: translateY(7px) rotate(45deg); }
+.bk-burger[aria-expanded="true"] .bk-burger-lines::after { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu plein écran (mobile), sous l'en-tête */
+.bk-menu { position: fixed; z-index: 99; top: var(--head); left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 20px 90px; background: var(--bg); overflow-y: auto; }
+.bk-menu nav { display: grid; gap: 22px; }
+.bk-menu nav a span:first-child { font: 800 36px/1 var(--sans); }
+.bk-menu nav a .bk-en { margin-top: 4px; font: 500 13px/1.3 var(--sans); letter-spacing: .06em; }
+.bk-menu-mail { font-weight: 700; color: var(--ink); }
+
+/* Mention verticale fixe, comme sur chaque page du book */
+.bk-side { position: fixed; z-index: 20; top: calc(50% + var(--head) / 2); left: calc(var(--side) + 4px); margin: 0; display: flex; align-items: center; gap: 18px; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); font: 700 9px/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; white-space: nowrap; }
 .bk-side span:first-child { color: var(--muted); font-weight: 500; }
 .bk-side-bar { width: 1px; height: 12px; background: var(--ink); }
+.bk-side span { flex: none; } /* la mention ne se coupe jamais */
 
-/* Typographie du book */
+main { padding-top: var(--head); }
+
+/* — Typographie du book — */
 .bk-title { margin: 0 0 22px; font: 800 clamp(40px, 4.6vw, 72px)/1 var(--sans); letter-spacing: -.02em; text-transform: uppercase; }
 .bk-sub { margin: 0 0 14px; font: 700 13px/1.4 var(--sans); text-transform: uppercase; letter-spacing: .02em; }
 .bk-fr { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
@@ -36,19 +71,24 @@ p.bk-en { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
 .bk-dash { display: block; width: 14px; height: 2px; margin: 10px 0 24px; background: var(--ink); }
 .bk-award { font-weight: 700; }
 
-/* — Pages paysage (accueil) — */
-.bk-page { min-height: 100svh; scroll-snap-align: start; padding: clamp(80px, 9vh, 120px) clamp(20px, 4vw, 64px) clamp(60px, 8vh, 100px) var(--left); display: grid; align-items: center; }
-.bk-col { max-width: 420px; }
+/* — Hero : vidéo plein cadre, toujours en 16:9 — */
+.bk-hero { padding: 0 var(--right) 0 var(--left); }
+.bk-hero-frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #111; }
+.bk-hero-video { width: 100%; height: 100%; object-fit: cover; }
+.bk-hero-toggle { position: absolute; right: 16px; bottom: 16px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgba(15, 20, 25, .55); cursor: pointer; display: grid; place-items: center; transition: background .2s; }
+.bk-hero-toggle:hover { background: rgba(15, 20, 25, .85); }
+/* Icône pause (deux barres) ou lecture (triangle) */
+.bk-hero-toggle span { width: 12px; height: 14px; border-left: 4px solid #fff; border-right: 4px solid #fff; }
+.bk-hero-toggle[aria-pressed="true"] span { width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent #fff; margin-left: 3px; }
 
-.bk-cover { place-items: center; position: relative; }
-/* Nom à droite du picto fixe, comme la couverture du book */
-.bk-cover-name { position: absolute; top: clamp(20px, 4vw, 48px); left: var(--left); margin: 0; font: 700 clamp(18px, 1.9vw, 28px)/clamp(24px, 2.4vw, 35px) var(--sans); text-transform: uppercase; letter-spacing: -.01em; }
-.bk-cover-box { margin: 0; padding: clamp(28px, 4vw, 56px) clamp(40px, 6vw, 96px); border-radius: 10px; background: #1e1e1e; color: var(--bg); font: 800 clamp(48px, 7vw, 110px)/1 var(--sans); text-transform: uppercase; letter-spacing: .01em; }
-.bk-cover-hint { position: absolute; bottom: 70px; margin: 0; color: var(--muted); }
+/* — Pages paysage (accueil) — */
+.bk-page { min-height: calc(100svh - var(--head)); padding: clamp(40px, 6vh, 80px) var(--right) clamp(48px, 8vh, 100px) var(--left); display: grid; align-items: center; }
+.bk-col { max-width: 420px; }
+.bk-anchor { height: 0; }
 
 .bk-about { grid-template-columns: minmax(0, 420px) 1fr; gap: clamp(28px, 6vw, 110px); }
 .bk-toc { list-style: none; margin: 0; padding: 0; align-self: center; display: grid; gap: 4px; }
-.bk-toc a { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid #dcd8d1; font: 700 clamp(16px, 1.6vw, 22px)/1.2 var(--sans); text-decoration: none; text-transform: uppercase; }
+.bk-toc a { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); font: 700 clamp(16px, 1.6vw, 22px)/1.2 var(--sans); text-decoration: none; text-transform: uppercase; }
 .bk-toc a span { color: var(--accent); font-weight: 800; min-width: 2.4em; }
 .bk-toc a:hover { color: var(--accent); }
 
@@ -67,8 +107,8 @@ p.bk-en { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
 .bk-contact a { color: var(--accent); }
 
 /* — Page projet — */
-.bk-spread { display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: clamp(28px, 5vw, 80px); padding: clamp(80px, 9vh, 120px) clamp(20px, 4vw, 64px) 60px var(--left); }
-.bk-col--sticky { position: sticky; top: 90px; align-self: start; }
+.bk-spread { display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: clamp(28px, 5vw, 80px); padding: clamp(32px, 5vh, 64px) var(--right) 60px var(--left); }
+.bk-col--sticky { position: sticky; top: calc(var(--head) + 24px); align-self: start; }
 .bk-back { display: inline-block; margin-bottom: 26px; font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .1em; text-decoration: none; color: var(--muted); }
 .bk-back:hover { color: var(--accent); }
 .bk-plates { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
@@ -76,24 +116,26 @@ p.bk-en { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
 .bk-plate--wide { grid-column: 1 / -1; }
 .bk-plate img { width: 100%; height: auto; }
 
-.bk-next { display: grid; gap: 6px; padding: 48px clamp(20px, 4vw, 64px) 100px var(--left); border-top: 1px solid #dcd8d1; text-decoration: none; }
+.bk-next { display: grid; gap: 6px; padding: 48px var(--right) 100px var(--left); border-top: 1px solid var(--line); text-decoration: none; }
 .bk-next .bk-title { margin: 0; font-size: clamp(28px, 3.4vw, 52px); }
 .bk-next:hover .bk-title { color: var(--accent); }
 
-/* — Mobile : les pages s'empilent, la mention verticale disparaît — */
+/* — Tablette : la mention verticale disparaît, le contenu reprend toute la largeur — */
 @media (max-width: 860px) {
-  :root { --left: 20px; }
+  :root { --left: 20px; --right: 20px; --side: 20px; }
   .bk-side { display: none; }
-  .bk-picto { position: absolute; }
-  .bk-page { min-height: 0; padding-top: 96px; padding-bottom: 56px; }
-  .bk-cover { min-height: 80svh; }
-  .bk-cover-name { left: 66px; top: 26px; }
+  .bk-page { min-height: 0; padding-top: 48px; padding-bottom: 56px; }
   .bk-about, .bk-project, .bk-spread { grid-template-columns: 1fr; }
   .bk-col--sticky { position: static; }
   .bk-mosaic { order: -1; }
   .bk-plates { grid-template-columns: 1fr; }
 }
-@media (prefers-reduced-motion: reduce) {
-  html:has(body.bk--snap) { scroll-snap-type: none; }
-  * { transition: none !important; }
+/* — Mobile : logo à sa taille minimale, navigation remplacée par le bouton menu — */
+@media (max-width: 760px) {
+  :root { --head: 64px; }
+  .bk-nav { display: none; }
+  .bk-burger { display: block; }
+  .bk-hero { padding: 0; } /* vidéo bord à bord sur téléphone */
 }
+@media (min-width: 761px) { .bk-menu { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
