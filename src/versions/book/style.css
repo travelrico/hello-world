@@ -12,13 +12,14 @@
   --accent: #00a19a;
   --sans: "Albert Sans", system-ui, sans-serif;
   --head: clamp(64px, 9vw, 130px);      /* hauteur de l'en-tête : 130 px sur grand écran, se réduit avec la fenêtre */
+  --head-small: clamp(56px, 5.5vw, 80px); /* hauteur une fois la page défilée */
   --side: clamp(18px, 3.6vw, 52px);     /* colonne du logo et de la mention verticale */
   --left: clamp(64px, 11vw, 160px);     /* début du contenu, comme la marge gauche du book */
   --right: clamp(20px, 4vw, 64px);
 }
 
 * { box-sizing: border-box; }
-html { scroll-padding-top: var(--head); } /* les ancres (#projets…) arrivent sous l'en-tête */
+html { scroll-padding-top: var(--head-small); } /* les ancres (#projets…) arrivent sous l'en-tête réduit */
 body.bk { margin: 0; background: var(--bg); color: var(--ink); font: 400 15px/1.6 var(--sans); }
 body.bk-menu-open { overflow: hidden; }
 img, video { display: block; max-width: 100%; }
@@ -30,7 +31,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .bk-head { position: fixed; z-index: 100; top: 0; left: 0; right: 0; height: var(--head); display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 var(--right) 0 var(--side); background: var(--bg); }
 .bk-logo { display: block; flex: none; }
 .bk-logo img { height: clamp(16px, 1.95vw, 28px); width: auto; } /* l'ensemble picto + nom se réduit progressivement */
-.bk-nav { display: flex; gap: clamp(20px, 3.2vw, 52px); }
+
+/* En-tête réduit dès qu'on fait défiler la page (classe ajoutée par script.js) ; grand écran uniquement */
+.bk-head { transition: height .4s cubic-bezier(.2, .7, .2, 1), box-shadow .4s; }
+.bk-logo img { transition: height .4s cubic-bezier(.2, .7, .2, 1); }
+@media (min-width: 761px) {
+  .bk-scrolled .bk-head { height: var(--head-small); box-shadow: 0 1px 0 var(--line); }
+  .bk-scrolled .bk-logo img { height: clamp(15px, 1.5vw, 22px); }
+}
+.bk-nav { display: flex; align-items: flex-start; gap: clamp(20px, 3.2vw, 52px); } /* intitulés alignés par le haut, avec ou sans traduction */
 .bk-nav a, .bk-menu nav a { position: relative; display: grid; text-decoration: none; text-transform: uppercase; }
 .bk-nav a span:first-child { font: 700 13px/1.2 var(--sans); letter-spacing: .03em; }
 .bk-nav a .bk-en { font: 500 10px/1.4 var(--sans); letter-spacing: .06em; }
@@ -108,7 +117,7 @@ p.bk-en { margin: 0 0 16px; font-size: 15px; line-height: 1.65; }
 
 /* — Page projet — */
 .bk-spread { display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: clamp(28px, 5vw, 80px); padding: clamp(32px, 5vh, 64px) var(--right) 60px var(--left); }
-.bk-col--sticky { position: sticky; top: calc(var(--head) + 24px); align-self: start; }
+.bk-col--sticky { position: sticky; top: calc(var(--head-small) + 24px); align-self: start; }
 .bk-back { display: inline-block; margin-bottom: 26px; font: 700 12px/1 var(--sans); text-transform: uppercase; letter-spacing: .1em; text-decoration: none; color: var(--muted); }
 .bk-back:hover { color: var(--accent); }
 .bk-plates { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }

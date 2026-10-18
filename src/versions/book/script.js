@@ -1,5 +1,12 @@
-// Version 6 — Book : menu mobile (burger) et vidéo du hero
+// Version 6 — Book : en-tête réduit au défilement, menu mobile (burger) et vidéo du hero
 (() => {
+  /* — En-tête : passe en version réduite dès qu'on a défilé de quelques pixels — */
+  const root = document.documentElement;
+  let ticking = false;
+  const updateHead = () => { root.classList.toggle("bk-scrolled", window.scrollY > 24); ticking = false; };
+  window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(updateHead); } }, { passive: true });
+  updateHead();
+
   /* — Menu mobile — */
   const burger = document.querySelector(".bk-burger");
   const menu = document.getElementById("bk-menu");
