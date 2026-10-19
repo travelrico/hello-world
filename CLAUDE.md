@@ -57,6 +57,7 @@ Je suis graphiste, pas développeur : **explique tes choix simplement**, sans ja
   - Ancien site fait main, non utilisé par Eleventy (conservé pour mémoire) : `index.html`, `style.css`, `script.js`, `images/`, `videos/`, `projects/`, ainsi que `reference/` (archives). Ne pas les modifier ; suppression possible plus tard, sur accord.
 
 ## Façon de travailler
+- **En début de séance, lire `SUIVI.md`** (où on en est, questions en attente, prochaines étapes) ; le mettre à jour en fin de séance.
 - Une tâche à la fois, par petites étapes vérifiables dans le navigateur.
 - **Avant toute modification importante** (structure, dépendances, suppression de fichiers) : expliquer le plan et attendre mon accord.
 - Proposer un commit Git après chaque étape validée, avec un message clair en français.
